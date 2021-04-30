@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
@@ -15,11 +16,9 @@ class Snack(models.Model):
         return self.name
     
 class Review(models.Model):
-    user = models.CharField(max_length=50)
-    rating = models.IntegerField()
-    reviewtext = models.CharField(max_length=1000)
     snack_id = models.ForeignKey(Snack, on_delete=models.CASCADE)
+    user = models.CharField(max_length=50)
+    rating = models.IntegerField(validators=[MinValueValidator(0),
+                                       MaxValueValidator(5)])
+    reviewtext = models.CharField(max_length=1000)
     pub_date = models.DateTimeField()
-
-    def __str__(self):
-        return self.rating  

@@ -12,14 +12,23 @@ from rest_framework.authentication import TokenAuthentication
 class SnackView(viewsets.ModelViewSet):
     serializer_class = SnackSerializer
     queryset = Snack.objects.all()
+    permissision_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]
 
 class TagView(viewsets.ModelViewSet):
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
+    permissision_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]
 
 class ReviewView(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
     queryset = Review.objects.all()
+    permissision_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]
 
 # class SnackView(View):
 #     model = Snack

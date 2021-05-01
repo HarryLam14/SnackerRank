@@ -29,6 +29,9 @@ class ReviewView(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
     queryset = Review.objects.all()
 
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["snack_id"]
+
 # class SnackView(View):
 #     model = Snack
     

@@ -6,27 +6,26 @@ from django.contrib.auth.decorators import login_required
 from .serializers import *
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.authentication import TokenAuthentication
 
 # Create your views here.
 class SnackView(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
-    ]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = SnackSerializer
     queryset = Snack.objects.all()
 
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ["tags"]
+    search_fields = ["name", "description", "tags__name"]
+
 class TagView(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
-    ]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
 
 class ReviewView(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
-    ]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ReviewSerializer
     queryset = Review.objects.all()
 

@@ -9,7 +9,7 @@
 | api/snack | --------  | GET | Retrieves all snacks |
 |  | --------  | POST | Add new snack |
 | | ?search=  | GET | Retrieves all snacks with name, description or tags |
-|  |?tag=1| GET  |Retreives all snacks with tag id=1|
+|  |?tags=1| GET  |Retreives all snacks with tag id=1|
 |  | /1  | GET | Retrieves snack where id=1 |
 |  | /1  | PUT | Update infor for snack where id=1 |
 |  | /1  | DELETE | Delete snack where id=1 |

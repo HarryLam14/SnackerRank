@@ -15,15 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-from snacks import views
-
-router = routers.DefaultRouter()
-router.register(r'snack', views.SnackView, 'snack')
-router.register(r'tag', views.TagView, 'tag')
-router.register(r'review', views.ReviewView, 'review')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/', include('snacks.urls')),
 ]

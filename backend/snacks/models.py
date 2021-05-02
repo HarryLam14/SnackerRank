@@ -16,7 +16,7 @@ class Snack(models.Model):
         return self.name
     
 class Review(models.Model):
-    snack_id = models.ForeignKey(Snack, on_delete=models.CASCADE)
+    snack_id = models.ForeignKey(Snack, on_delete=models.SET_NULL, null=True)
     user = models.CharField(max_length=50)
     rating = models.FloatField(validators=[MinValueValidator(0),
                                        MaxValueValidator(5)])

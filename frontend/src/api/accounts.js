@@ -1,11 +1,11 @@
 const login = async (username, password) => {
-  const requestOptions = {
+  const request = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   };
 
-  return fetch("/api/auth/login", requestOptions)
+  return fetch("/api/auth/login", request)
     .then((res) => {
       if (res.status === 200) {
         res.json().then((data) => {
@@ -13,12 +13,13 @@ const login = async (username, password) => {
           localStorage.setItem("token", token);
         });
       }
+      return res;
     })
     .catch((err) => console.log(err));
 };
 
 const logout = async () => {
-  const requestOptions = {
+  const request = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +27,7 @@ const logout = async () => {
     },
   };
 
-  return fetch("/api/auth/logout", requestOptions)
+  return fetch("/api/auth/logout", request)
     .then((res) => {
       if (res.status === 204) {
         localStorage.removeItem("token");
@@ -36,13 +37,13 @@ const logout = async () => {
 };
 
 const register = async (username, password) => {
-  const requestOptions = {
+  const request = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   };
 
-  return fetch("/api/auth/register", requestOptions)
+  return fetch("/api/auth/register", request)
     .then((res) => {
       if (res.status === 200) {
         res.json().then((data) => {
@@ -50,6 +51,7 @@ const register = async (username, password) => {
           localStorage.setItem("token", token);
         });
       }
+      return res;
     })
     .catch((err) => console.log(err));
 };

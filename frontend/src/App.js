@@ -15,7 +15,9 @@ function App() {
   const [tags, setTags] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [selectTags, setSelectTags] = useState([]);
   const [addTags, setAddTags] = useState([]);
+  const [tagName, setTagName] = useState([]);
 
   useEffect(() => {
     if (!_.isEmpty(accountsAPI.tokenHeader())) {
@@ -43,8 +45,14 @@ function App() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    accountsAPI.login(username, password);
-    setLoggedIn(true);
+    accountsAPI.login(username, password).then(
+      (res) => {
+        if (res.status === 200) {
+          setLoggedIn(true);
+        }
+      },
+      (error) => console.log(error)
+    );
   };
 
   const userLogout = () => {
@@ -64,7 +72,7 @@ function App() {
     let value = Array.from(e.target.selectedOptions, (option) =>
       parseInt(option.value)
     );
-    setAddTags(value);
+    setSelectTags(value);
   };
 
   const handleSubmit = async (e) => {
@@ -72,7 +80,7 @@ function App() {
     const newSnack = {
       name: name,
       description: description,
-      tags: addTags,
+      tags: selectTags,
     };
     snacksAPI
       .addSnack(newSnack)
@@ -145,12 +153,7 @@ function App() {
           onChange={handleDescriptionChange}
           required
         />
-        <select
-          id="subject"
-          onChange={handleTagsChange}
-          required
-          multiple
-        >
+        <select id="subject" onChange={handleTagsChange} required multiple>
           {tags.map((tag) => {
             return (
               <option value={tag.id} key={tag.id}>

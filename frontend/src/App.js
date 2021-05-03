@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { accountsAPI } from "./api/accounts";
 import { snacksAPI } from "./api/snacks";
+import { tagsAPI } from "./api/tags";
 import _ from "lodash";
 import Header from "./layout/Header";
 
@@ -9,6 +10,11 @@ function App() {
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [snacks, setSnacks] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [addTags, setAddTags] = useState([]);
+  const tagsEl = useRef();
 
   useEffect(() => {
     if (!_.isEmpty(accountsAPI.tokenHeader())) {
@@ -25,6 +31,15 @@ function App() {
     );
   }, []);
 
+  useEffect(() => {
+    tagsAPI.getTags().then(
+      (tags) => {
+        setTags(tags);
+      },
+      (error) => console.log(error)
+    );
+  }, []);
+
   const onSubmit = (e) => {
     e.preventDefault();
     accountsAPI.login(username, password);
@@ -36,9 +51,42 @@ function App() {
     setLoggedIn(false);
   };
 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleTagsChange = (e) => {
+    let value = Array.from(e.target.selectedOptions, (option) =>
+      parseInt(option.value)
+    );
+    setAddTags(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newSnack = {
+      name: name,
+      description: description,
+      tags: addTags,
+    };
+    snacksAPI
+      .addSnack(newSnack)
+      .then((data) => {
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <Header loggedIn={loggedIn} />
+
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -56,8 +104,10 @@ function App() {
         <br></br>
         <input type="submit" value="Login"></input>
       </form>
+
       <br></br>
       <button onClick={userLogout}>Logout</button>
+
       <table>
         <thead>
           <tr>
@@ -79,6 +129,37 @@ function App() {
           ))}
         </tbody>
       </table>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Name"
+          onChange={handleNameChange}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Description"
+          onChange={handleDescriptionChange}
+          required
+        />
+        <select
+          id="subject"
+          ref={tagsEl}
+          onChange={handleTagsChange}
+          required
+          multiple
+        >
+          {tags.map((tag) => {
+            return (
+              <option value={tag.id} key={tag.id}>
+                {tag.name}
+              </option>
+            );
+          })}
+        </select>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }

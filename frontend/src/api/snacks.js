@@ -1,3 +1,5 @@
+import { accountsAPI } from "./accounts";
+
 const getSnacks = async (search, params) => {
   const requestOptions = {
     method: "GET",
@@ -37,6 +39,19 @@ const getSnack = async (id) => {
     });
 };
 
+const addSnack = async (snack) => {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...accountsAPI.tokenHeader(),
+    },
+    body: JSON.stringify({ ...snack }),
+  };
+
+  return fetch(`/api/snack/`, requestOptions).then(handleResponse);
+};
+
 const handleResponse = (response) => {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
@@ -55,4 +70,5 @@ const handleResponse = (response) => {
 export const snacksAPI = {
   getSnacks,
   getSnack,
+  addSnack,
 };

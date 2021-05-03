@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { accountsAPI } from "./api/accounts";
 import { snacksAPI } from "./api/snacks";
 import { tagsAPI } from "./api/tags";
+import { reviewsAPI } from "./api/reviews";
 import _ from "lodash";
 import Header from "./layout/Header";
 
@@ -13,6 +14,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [snacks, setSnacks] = useState([]);
   const [tags, setTags] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [selectTags, setSelectTags] = useState([]);
@@ -37,6 +39,15 @@ function App() {
     tagsAPI.getTags().then(
       (tags) => {
         setTags(tags);
+      },
+      (error) => console.log(error)
+    );
+  }, []);
+
+  useEffect(() => {
+    reviewsAPI.getReviews().then(
+      (reviews) => {
+        setReviews(reviews);
       },
       (error) => console.log(error)
     );
@@ -195,6 +206,30 @@ function App() {
         />
         <button type="submit">Submit</button>
       </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Rating</th>
+            <th>Date</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {reviews.map((review) => (
+            <tr key={review.id}>
+              <td>{review.id}</td>
+              <td>{review.user}</td>
+              <td>{review.reviewtext}</td>
+              <td>{review.rating}</td>
+              <td>{review.pub_date}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

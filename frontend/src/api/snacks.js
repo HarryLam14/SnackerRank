@@ -1,12 +1,12 @@
-const getSnacks = async (tag, params) => {
+const getSnacks = async (search, params) => {
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   };
 
   let url;
-  if (tag) {
-    url = `/api/snack/?tags=${tag}`;
+  if (search) {
+    url = `/api/snack/?search=${search}`;
   } else {
     url = `/api/snack/?`;
   }
@@ -23,6 +23,18 @@ const getSnacks = async (tag, params) => {
       return data;
     })
     .catch((err) => console.log(err));
+};
+
+const getSnack = async (id) => {
+  const requestOptions = {
+    method: "GET",
+  };
+
+  return fetch(`/api/snack/${id}/`, requestOptions)
+    .then(handleResponse)
+    .then((snack) => {
+      return snack;
+    });
 };
 
 const handleResponse = (response) => {
@@ -42,4 +54,5 @@ const handleResponse = (response) => {
 
 export const snacksAPI = {
   getSnacks,
+  getSnack,
 };

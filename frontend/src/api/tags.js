@@ -1,30 +1,34 @@
+import { accountsAPI } from "./accounts";
+
 const getTags = async () => {
-  const requestOptions = {
+  const request = {
     method: "GET",
   };
 
-  return fetch("/api/tag/", requestOptions)
-    .then(handleResponse)
+  return fetch("/api/tag/", request)
+    .then((res) => res.json())
     .then((tags) => {
       return tags;
-    });
+    })
+    .catch((err) => console.log(err));
 };
 
-const handleResponse = (response) => {
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        console.log(response);
-        return;
-      }
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-    return data;
-  });
+const addTag = async (tag) => {
+  const request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...accountsAPI.tokenHeader(),
+    },
+    body: JSON.stringify({ ...tag }),
+  };
+
+  return fetch("/api/tag/", request)
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
 };
 
 export const tagsAPI = {
   getTags,
+  addTag,
 };

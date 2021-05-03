@@ -16,8 +16,7 @@ function App() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [selectTags, setSelectTags] = useState([]);
-  const [addTags, setAddTags] = useState([]);
-  const [tagName, setTagName] = useState([]);
+  const [newTagName, setNewTagName] = useState([]);
 
   useEffect(() => {
     if (!_.isEmpty(accountsAPI.tokenHeader())) {
@@ -53,6 +52,8 @@ function App() {
       },
       (error) => console.log(error)
     );
+    setUsername("");
+    setPassword("");
   };
 
   const userLogout = () => {
@@ -86,6 +87,26 @@ function App() {
       .addSnack(newSnack)
       .then((data) => {
         setSnacks([...snacks, data]);
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleNewTagChange = (e) => {
+    setNewTagName(e.target.value);
+  };
+
+  const doSubmit = async (e) => {
+    e.preventDefault();
+    const newTag = {
+      name: newTagName,
+    };
+    tagsAPI
+      .addTag(newTag)
+      .then((data) => {
+        setTags([...tags, data]);
         e.target.reset();
       })
       .catch((error) => {
@@ -162,6 +183,16 @@ function App() {
             );
           })}
         </select>
+        <button type="submit">Submit</button>
+      </form>
+
+      <form onSubmit={doSubmit}>
+        <input
+          type="text"
+          placeholder="Name"
+          onChange={handleNewTagChange}
+          required
+        />
         <button type="submit">Submit</button>
       </form>
     </div>

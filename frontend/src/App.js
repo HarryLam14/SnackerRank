@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { accountsAPI } from "./api/accounts";
 import { snacksAPI } from "./api/snacks";
 import { tagsAPI } from "./api/tags";
@@ -14,7 +14,6 @@ function App() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [addTags, setAddTags] = useState([]);
-  const tagsEl = useRef();
 
   useEffect(() => {
     if (!_.isEmpty(accountsAPI.tokenHeader())) {
@@ -76,6 +75,7 @@ function App() {
     snacksAPI
       .addSnack(newSnack)
       .then((data) => {
+        setSnacks([...snacks, data]);
         e.target.reset();
       })
       .catch((error) => {
@@ -145,7 +145,6 @@ function App() {
         />
         <select
           id="subject"
-          ref={tagsEl}
           onChange={handleTagsChange}
           required
           multiple

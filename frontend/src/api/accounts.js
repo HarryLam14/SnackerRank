@@ -1,4 +1,4 @@
-export const login = async (username, password) => {
+const login = async (username, password) => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -13,14 +13,11 @@ export const login = async (username, password) => {
           localStorage.setItem("token", token);
         });
       }
-      return res;
     })
-    .catch((err) => {
-      return err;
-    });
+    .catch((err) => console.log(err));
 };
 
-export const logout = async () => {
+const logout = async () => {
   const requestOptions = {
     method: "POST",
     headers: {
@@ -34,14 +31,11 @@ export const logout = async () => {
       if (res.status === 204) {
         localStorage.removeItem("token");
       }
-      return res;
     })
-    .catch((err) => {
-      return err;
-    });
+    .catch((err) => console.log(err));
 };
 
-export const register = async (username, password) => {
+const register = async (username, password) => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -56,9 +50,21 @@ export const register = async (username, password) => {
           localStorage.setItem("token", token);
         });
       }
-      return res;
     })
-    .catch((err) => {
-      return err;
-    });
+    .catch((err) => console.log(err));
+};
+
+const tokenHeader = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    return { Authorization: `Token ${token}` };
+  }
+  return {};
+};
+
+export const accountsAPI = {
+  login,
+  logout,
+  register,
+  tokenHeader,
 };

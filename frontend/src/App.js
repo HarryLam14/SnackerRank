@@ -11,7 +11,7 @@ function App() {
   const [snacks, setSnacks] = useState([]);
 
   useEffect(() => {
-    if (!_.isEmpty(accountsAPI.authHeader())) {
+    if (!_.isEmpty(accountsAPI.tokenHeader())) {
       setLoggedIn(true);
     }
   }, []);

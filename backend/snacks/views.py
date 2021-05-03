@@ -56,20 +56,3 @@ class SnackViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-
-    @action(detail=True)
-    def answered(self, request, pk=None):
-        card = self.get_object()
-        val = card.difficulty
-        outcome = self.request.query_params.get('correct')
-        serializer = self.get_serializer(card)
-
-        if outcome == "true":
-            val += 1
-        elif outcome == "false":
-            val -= 2
-        else:
-            pass
-        card.difficulty = (val)
-        card.save()
-        return Response(serializer.data)

@@ -15,6 +15,7 @@
 |  | /1  | DELETE | Delete snack where id=1 |
 | api/review | --------  | GET | Retrieve all reviews |
 |  | -------- | POST | Add new review |
+|  |?snack_id=1| GET  |Retreives all reviews with snack id=1|
 |  | /1  | GET | Retrieves review with id=1 |
 |  | /1  | PUT | Update review with id=1 |
 |  | /1  | DELETE | Delete review with id=1 |

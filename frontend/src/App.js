@@ -1,3 +1,5 @@
+// currently just testing in App.js,
+// this code will be split into different components eventually
 import { useState, useEffect } from "react";
 import { accountsAPI } from "./api/accounts";
 import { snacksAPI } from "./api/snacks";

@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { tagsAPI } from "../api/tags";
-import { Link } from 'react-router-dom'
-import CategoryDisplay from './CategoryDisplay';
 import Card from './Card.js'
 
 function TagsList() {
@@ -17,22 +15,18 @@ function TagsList() {
     );
   }, []);
 
-  const handleClick = (e) => {
-    console.log(e.target.valu);
-    setTargetTag({"tags": e.target.value});
-    console.log(targetTag);
-  };
-
   return (
     <div>
-      <ul id="subject" required multiple>
+      <ul required multiple>
+        <div className = "cards">
         {tags.map((tag) => {
           return (
-            <div className = "cards">
-            <Card name = {tag.name} id = {tag.id} pathname = {`/tag/${tag.id}`} description = ''/>
-            </div>
+            
+            <Card key={tag.id} name={tag.name} id={tag.id} pathname={`/tag/${tag.id}`} description=''/>
+            
           );
         })}
+        </div>
       </ul>
     </div>
   );

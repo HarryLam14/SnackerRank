@@ -1,4 +1,4 @@
-import './article.css'
+import '../static/article.css'
 import image from '../images/article.jpg'
 
 const Article = () => {

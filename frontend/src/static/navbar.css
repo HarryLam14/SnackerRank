@@ -1,9 +1,7 @@
 .logo {
     width: 300px;
-    padding-left: 4rem;
-    padding-top: 5px;
   }
-  
+
 .navBar {
     display: flex;
     align-items: center;
@@ -11,6 +9,28 @@
     margin-right: 15px;
     background-color: var(--blue);
     width: 100vw;
+}
+
+@media  only screen and (max-width: 1040px) {
+    .navBar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .navBar * {
+        margin: 0;
+    }
+    .logo {
+        width: 250px;
+      }
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchContainer input {
+    max-width: 100%;
 }
 
 .buttonsContainer {
@@ -26,7 +46,7 @@
 }
 
 button {
-    margin: 1rem 1rem;
+    margin: 0 1rem;
     padding: 2px 4px;
     border-radius: 4px;
     background-color: var(--coral);
@@ -48,4 +68,8 @@ button:hover {
 
 a:hover {
     text-decoration: underline;
+}
+
+.navBar input {
+    margin: 6px 1rem;
 }

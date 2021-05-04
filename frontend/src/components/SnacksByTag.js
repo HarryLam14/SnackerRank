@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
 import Card from "./Card.js"
-import "./Card.css"
+import "../static/Card.css"
 import { withRouter } from "react-router";
 import {useParams} from "react-router-dom";
 
-function CategoryDisplay() {
+function SnacksByTag() {
 
   const [items, setItems] = useState([]);
-  const [searchedItems, setSearchedItems] = useState([]);
   const targetTagID = useParams();
 
 useEffect(() => {
@@ -26,7 +25,7 @@ useEffect(() => {
           <p>Click an item to get more info</p>
           <div className ="cards">
             {items.map((items) => ( 
-              <Card name = {items.name} description = ""/>
+              <Card name = {items.name} description = "" pathname = {`/snack/${items.id}`} description = ''/>
           ))}
           </div>
         </div>
@@ -34,4 +33,4 @@ useEffect(() => {
   )
 }
 
-export default withRouter(CategoryDisplay)
+export default withRouter(SnacksByTag)

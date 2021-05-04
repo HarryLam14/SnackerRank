@@ -5,7 +5,7 @@ class SnackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Snack 
-        fields = ('id', 'name', 'description', 'tags')
+        fields = ('id', 'name', 'image', 'description', 'tags')
 
 class TagSerializer(serializers.ModelSerializer):
 

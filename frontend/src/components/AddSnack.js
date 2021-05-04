@@ -6,6 +6,7 @@ function AddSnack() {
   const [snacks, setSnacks] = useState([]);
   const [tags, setTags] = useState([]);
   const [name, setName] = useState("");
+  const [image, setImage] = useState()
   const [description, setDescription] = useState("");
   const [selectTags, setSelectTags] = useState([]);
 
@@ -20,6 +21,10 @@ function AddSnack() {
 
   const handleNameChange = (e) => {
     setName(e.target.value);
+  };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.value);
   };
 
   const handleDescriptionChange = (e) => {
@@ -37,6 +42,7 @@ function AddSnack() {
     e.preventDefault();
     const newSnack = {
       name: name,
+      image: image,
       description: description,
       tags: selectTags,
     };
@@ -61,6 +67,14 @@ function AddSnack() {
           required
         />
         <input
+          accept="image/*"
+          className={classes.input}
+          id="Snack-image"
+          onChange={handleImageChange}
+          name="image"
+          type="file"
+        />
+          <input
           type="text"
           placeholder="Description"
           onChange={handleDescriptionChange}

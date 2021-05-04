@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
 import { tagsAPI } from "../api/tags";
+import { useParams } from "react-router-dom";
 
-function SnackDetail({ snack_id }) {
+import "../static/snackdetail.css"
+
+function SnackDetail() {
   const [snack, setSnack] = useState([]);
   const [tags, setTags] = useState([]);
+  const snack_id = useParams();
 
   useEffect(() => {
-    snacksAPI.getSnack(snack_id).then(
+    snacksAPI.getSnack(snack_id['id']).then(
       (snack) => {
-        setSnack([snack]);
+        setSnack(snack);
       },
       (error) => console.log(error)
     );
@@ -22,15 +26,29 @@ function SnackDetail({ snack_id }) {
       },
       (error) => console.log(error)
     );
+    
   }, []);
 
+  console.log(snack)
   return (
     <div>
-      <table>
+      <div id="roundedcontainer">
+
+        <img src={snack.image}/> 
+        <div id="snacktext">
+          <h1>{snack.name}</h1>
+          <p>{snack.description}</p>
+        </div>
+
+      <div/> 
+    </div>
+
+      {/* <table>
         <thead>
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Image</th>
             <th>Description</th>
             <th>Tags</th>
             <th />
@@ -41,6 +59,7 @@ function SnackDetail({ snack_id }) {
             <tr key={snack.id}>
               <td>{snack.id}</td>
               <td>{snack.name}</td>
+              <td><img src={snack.image}/></img></td>
               <td>{snack.description}</td>
               <td>
                 {snack.tags.map((id) => {
@@ -50,7 +69,7 @@ function SnackDetail({ snack_id }) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }

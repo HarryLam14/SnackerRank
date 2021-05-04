@@ -21,6 +21,22 @@ const getReviews = async (snack_id) => {
     .catch((err) => console.log(err));
 };
 
+const addReview = async (review) => {
+  const request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...accountsAPI.tokenHeader(),
+    },
+    body: JSON.stringify({ ...review }),
+  };
+
+  return fetch(`/api/review/`, request)
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
 export const reviewsAPI = {
   getReviews,
+  addReview,
 };

@@ -1,7 +1,7 @@
 import { accountsAPI } from "./accounts";
 
 const getSnacks = async (search, params) => {
-  const requestOptions = {
+  const request = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   };
@@ -19,8 +19,8 @@ const getSnacks = async (search, params) => {
     }
   }
 
-  return fetch(url, requestOptions)
-    .then(handleResponse)
+  return fetch(url, request)
+    .then((res) => res.json())
     .then((data) => {
       return data;
     })
@@ -28,19 +28,20 @@ const getSnacks = async (search, params) => {
 };
 
 const getSnack = async (id) => {
-  const requestOptions = {
+  const request = {
     method: "GET",
   };
 
-  return fetch(`/api/snack/${id}/`, requestOptions)
-    .then(handleResponse)
+  return fetch(`/api/snack/${id}/`, request)
+    .then((res) => res.json())
     .then((snack) => {
       return snack;
-    });
+    })
+    .catch((err) => console.log(err));
 };
 
 const addSnack = async (snack) => {
-  const requestOptions = {
+  const request = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -49,22 +50,9 @@ const addSnack = async (snack) => {
     body: JSON.stringify({ ...snack }),
   };
 
-  return fetch(`/api/snack/`, requestOptions).then(handleResponse);
-};
-
-const handleResponse = (response) => {
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        console.log(response);
-        return;
-      }
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-    return data;
-  });
+  return fetch(`/api/snack/`, request)
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
 };
 
 export const snacksAPI = {

@@ -1,3 +1,12 @@
+import logo from './logo.svg';
+import './App.css';
+import Navbar from './components/Navbar.js'
+import Article from './components/Article.js'
+import Footer from './components/Footer.js'
+
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 // currently just testing in App.js,
 // this code will be split into different components eventually
 import { useState, useEffect } from "react";
@@ -48,9 +57,12 @@ function App() {
   };
 
   return (
-    <div>
+    <Router>
+    <div className="App">
+      <Navbar />
       <Header loggedIn={loggedIn} />
-
+      <div className="pageBody">
+        <Article />
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -71,8 +83,10 @@ function App() {
 
       <br></br>
       <button onClick={userLogout}>Logout</button>
-
+      </div>
+      <Footer />
     </div>
+    </Router>
   );
 }
 

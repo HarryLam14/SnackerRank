@@ -6,28 +6,27 @@ import { withRouter } from "react-router";
 import { useParams } from "react-router-dom";
 
 function SnacksByTag() {
-  const [items, setItems] = useState([]);
+  const [snacks, setSnacks] = useState([]);
   const targetTagID = useParams();
 
   useEffect(() => {
     snacksAPI.getSnacks(null, targetTagID).then((data) => {
-      setItems(data);
+      setSnacks(data);
     });
-    console.log(items);
-    console.log(targetTagID);
-  }, []);
+  }, [targetTagID]);
 
   return (
     <div className="container">
       <div>
-        <h1>Items</h1>
-        <p>Click an item to get more info</p>
+        <h1>Snacks</h1>
+        <p>{snacks.length ? "Click an item to get more info" : "No results"}</p>
         <div className="cards">
-          {items.map((items) => (
+          {snacks.map((snack) => (
             <Card
-              name={items.name}
+              key={snack.id}
+              name={snack.name}
               description=""
-              pathname={`/snack/${items.id}`}
+              pathname={`/snack/${snack.id}`}
             />
           ))}
         </div>

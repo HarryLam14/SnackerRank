@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import { accountsAPI } from "./api/accounts";
 import { snacksAPI } from "./api/snacks";
-import { tagsAPI } from "./api/tags";
-import { reviewsAPI } from "./api/reviews";
 import _ from "lodash";
 import Header from "./layout/Header";
 
@@ -12,13 +10,8 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+
   const [snacks, setSnacks] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [reviews, setReviews] = useState([]);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [selectTags, setSelectTags] = useState([]);
-  const [newTagName, setNewTagName] = useState([]);
 
   useEffect(() => {
     if (!_.isEmpty(accountsAPI.tokenHeader())) {
@@ -30,24 +23,6 @@ function App() {
     snacksAPI.getSnacks().then(
       (snacks) => {
         setSnacks(snacks);
-      },
-      (error) => console.log(error)
-    );
-  }, []);
-
-  useEffect(() => {
-    tagsAPI.getTags().then(
-      (tags) => {
-        setTags(tags);
-      },
-      (error) => console.log(error)
-    );
-  }, []);
-
-  useEffect(() => {
-    reviewsAPI.getReviews().then(
-      (reviews) => {
-        setReviews(reviews);
       },
       (error) => console.log(error)
     );
@@ -70,59 +45,6 @@ function App() {
   const userLogout = () => {
     accountsAPI.logout();
     setLoggedIn(false);
-  };
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleTagsChange = (e) => {
-    let value = Array.from(e.target.selectedOptions, (option) =>
-      parseInt(option.value)
-    );
-    setSelectTags(value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newSnack = {
-      name: name,
-      description: description,
-      tags: selectTags,
-    };
-    snacksAPI
-      .addSnack(newSnack)
-      .then((data) => {
-        setSnacks([...snacks, data]);
-        e.target.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const handleNewTagChange = (e) => {
-    setNewTagName(e.target.value);
-  };
-
-  const doSubmit = async (e) => {
-    e.preventDefault();
-    const newTag = {
-      name: newTagName,
-    };
-    tagsAPI
-      .addTag(newTag)
-      .then((data) => {
-        setTags([...tags, data]);
-        e.target.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   return (
@@ -150,86 +72,6 @@ function App() {
       <br></br>
       <button onClick={userLogout}>Logout</button>
 
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Tags</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {snacks.map((snack) => (
-            <tr key={snack.id}>
-              <td>{snack.id}</td>
-              <td>{snack.name}</td>
-              <td>{snack.description}</td>
-              <td>{snack.tags}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          onChange={handleNameChange}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          onChange={handleDescriptionChange}
-          required
-        />
-        <select id="subject" onChange={handleTagsChange} required multiple>
-          {tags.map((tag) => {
-            return (
-              <option value={tag.id} key={tag.id}>
-                {tag.name}
-              </option>
-            );
-          })}
-        </select>
-        <button type="submit">Submit</button>
-      </form>
-
-      <form onSubmit={doSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          onChange={handleNewTagChange}
-          required
-        />
-        <button type="submit">Submit</button>
-      </form>
-
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Rating</th>
-            <th>Date</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {reviews.map((review) => (
-            <tr key={review.id}>
-              <td>{review.id}</td>
-              <td>{review.user}</td>
-              <td>{review.reviewtext}</td>
-              <td>{review.rating}</td>
-              <td>{review.pub_date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 }

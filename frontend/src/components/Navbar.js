@@ -1,24 +1,8 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import _ from "lodash";
-import { accountsAPI } from "../api/accounts";
 import image from "../images/logo.svg";
 import "../static/navbar.css";
 
-const Navbar = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    if (!_.isEmpty(accountsAPI.tokenHeader())) {
-      setLoggedIn(true);
-    }
-  }, []);
-
-  const userLogout = () => {
-    accountsAPI.logout();
-    setLoggedIn(false);
-  };
-
+const Navbar = ({ loggedIn, userLogout }) => {
   return (
     <nav className="navBar">
       <div className="searchContainer">

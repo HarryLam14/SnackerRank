@@ -1,4 +1,6 @@
 import "./App.css";
+import { useState, useEffect } from "react";
+import { accountsAPI } from "./api/accounts";
 import Navbar from "./components/Navbar.js";
 import Article from "./components/Article.js";
 import Footer from "./components/Footer.js";
@@ -7,13 +9,51 @@ import TagsList from "./components/TagsList.js";
 import SnacksByTag from "./components/SnacksByTag.js";
 import SignIn from "./components/SignIn";
 import AddSnack from "./components/AddSnack";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import _ from "lodash";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (!_.isEmpty(accountsAPI.tokenHeader())) {
+      setLoggedIn(true);
+    }
+  }, []);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    accountsAPI.login(username, password).then(
+      (res) => {
+        if (res.status === 200) {
+          setLoggedIn(true);
+        }
+      },
+      (error) => console.log(error)
+    );
+    setUsername("");
+    setPassword("");
+  };
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const userLogout = () => {
+    accountsAPI.logout();
+    setLoggedIn(false);
+  };
+
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar loggedIn={loggedIn} userLogout={userLogout} />
         <div className="pageBody">
           <Route exact path="/">
             <Article />
@@ -25,7 +65,15 @@ function App() {
           </Route>
 
           <Route exact path="/login">
-            <SignIn />
+            {loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+              <SignIn
+                onSubmit={onSubmit}
+                handleUsernameChange={handleUsernameChange}
+                handlePasswordChange={handlePasswordChange}
+              />
+            )}
           </Route>
 
           <Route path="/snack/:id">

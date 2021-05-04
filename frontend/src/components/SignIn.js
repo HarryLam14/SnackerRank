@@ -1,27 +1,6 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { accountsAPI } from "../api/accounts";
 import "../static/signin.css";
 
-function SignIn() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const history = useHistory();
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    accountsAPI.login(username, password).then(
-      (res) => {
-        if (res.status === 200) {
-          history.goBack();
-        }
-      },
-      (error) => console.log(error)
-    );
-    setUsername("");
-    setPassword("");
-  };
-
+function SignIn({ onSubmit, handleUsernameChange, handlePasswordChange }) {
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -31,14 +10,14 @@ function SignIn() {
         <input
           type="text"
           name="username"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleUsernameChange}
           placeholder="Username"
         ></input>
         <br></br>
         <input
           type="password"
           name="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
           placeholder="Password"
         ></input>
         <br></br>

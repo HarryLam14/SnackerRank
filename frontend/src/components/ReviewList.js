@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { reviewsAPI } from "./api/reviews";
+import { reviewsAPI } from "../api/reviews";
 
 function ReviewList({ snack_id }) {
   const [reviews, setReviews] = useState([]);

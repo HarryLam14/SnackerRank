@@ -25,7 +25,7 @@ useEffect(() => {
           <p>Click an item to get more info</p>
           <div className ="cards">
             {items.map((items) => ( 
-              <Card name = {items.name} description = "" pathname = {`/snack/${items.id}`} description = ''/>
+              <Card name = {items.name} description = "" pathname = {`/snack/${items.id}`}/>
           ))}
           </div>
         </div>

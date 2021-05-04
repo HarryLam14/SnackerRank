@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
 import { tagsAPI } from "../api/tags";
 import { useParams } from "react-router-dom";
+import ReviewList from "./ReviewList";
+import Card from "./Card.js"
+import '../static/Card.css'
 
 import "../static/snackdetail.css"
 
@@ -26,50 +29,19 @@ function SnackDetail() {
       },
       (error) => console.log(error)
     );
-    
   }, []);
 
-  console.log(snack)
   return (
     <div>
       <div id="roundedcontainer">
 
-        <img src={snack.image}/> 
+        <img src={snack.image} id="imagedisp"/> 
         <div id="snacktext">
           <h1>{snack.name}</h1>
           <p>{snack.description}</p>
+          <ReviewList snack_id={snack_id['id']} />
         </div>
-
-      <div/> 
-    </div>
-
-      {/* <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Description</th>
-            <th>Tags</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {snack.map((snack) => (
-            <tr key={snack.id}>
-              <td>{snack.id}</td>
-              <td>{snack.name}</td>
-              <td><img src={snack.image}/></img></td>
-              <td>{snack.description}</td>
-              <td>
-                {snack.tags.map((id) => {
-                  return tags.map((tag) => tag.id === id && `${tag.name},`);
-                })}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
+      </div>
     </div>
   );
 }

@@ -1,12 +1,32 @@
 #roundedcontainer {
     border-radius: 25px;
-    background: #73AD21;
+    background: white;
+    border: 2px solid black;
     padding: 20px;
     width: auto;
     min-height: 200px; 
     margin: 50px 50px 2rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#roundedcontainer > * {
+    flex: 0 0 auto;
 }
 
 #snacktext { 
     text-align: left;
+    max-width: 75%;
+}
+
+#snacktext p {
+    max-width: 100%;
+}
+
+#imagedisp{
+    margin: 1rem 50px 1rem 1rem;
+    max-width: 50vh;
+    width: auto;
 }

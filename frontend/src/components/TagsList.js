@@ -4,7 +4,6 @@ import Card from './Card.js'
 
 function TagsList() {
   const [tags, setTags] = useState([]);
-  const [targetTag, setTargetTag] = useState();
 
   useEffect(() => {
     tagsAPI.getTags().then(
@@ -22,7 +21,7 @@ function TagsList() {
         {tags.map((tag) => {
           return (
             
-            <Card key={tag.id} name={tag.name} id={tag.id} pathname={`/tag/${tag.id}`} description=''/>
+             <Card name={tag.name} pathname={`/tag/${tag.id}`} description=''/>
             
           );
         })}

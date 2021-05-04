@@ -7,6 +7,7 @@ def upload_to(instance, filename):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(_("Image"), upload_to=upload_to, default='default.jpg')
 
     def __str__(self):
         return self.name
@@ -27,3 +28,6 @@ class Review(models.Model):
                                        MaxValueValidator(5)])
     reviewtext = models.CharField(max_length=1000)
     pub_date = models.DateTimeField()
+
+    class Meta:
+            ordering = ('-pub_date',)

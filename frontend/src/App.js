@@ -9,6 +9,7 @@ import TagsList from "./components/TagsList.js";
 import SnacksByTag from "./components/SnacksByTag.js";
 import SignIn from "./components/SignIn";
 import AddSnack from "./components/AddSnack";
+import SearchResults from "./components/SearchResults";
 import _ from "lodash";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
@@ -46,8 +47,14 @@ function App() {
   };
 
   const userLogout = () => {
-    accountsAPI.logout();
-    setLoggedIn(false);
+    accountsAPI.logout().then(
+      (res) => {
+        if (res.status === 204) {
+          setLoggedIn(false);
+        }
+      },
+      (error) => console.log(error)
+    );
   };
 
   return (
@@ -82,6 +89,10 @@ function App() {
 
           <Route path="/add-snack">
             <AddSnack />
+          </Route>
+
+          <Route path="/search=:search">
+            <SearchResults />
           </Route>
         </div>
         <Footer />

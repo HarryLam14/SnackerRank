@@ -1,13 +1,27 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import image from "../images/logo.svg";
 import "../static/navbar.css";
 
 const Navbar = ({ loggedIn, userLogout }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <nav className="navBar">
       <div className="searchContainer">
-        <button>Search</button>
-        <input type="text" />
+        <Link to={`/search=${searchQuery}`}>
+          <button>Search</button>
+        </Link>
+        <input
+          type="text"
+          placeholder="Search.."
+          onChange={handleSearchChange}
+          required
+        />
       </div>
       <Link className="logoContainer" to="/">
         <img className="logo" src={image} alt="SnackerRank logo" />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { tagsAPI } from "../api/tags";
-import Card from './Card.js'
+import Card from "./Card.js";
 
 function TagsList() {
   const [tags, setTags] = useState([]);
@@ -17,14 +17,16 @@ function TagsList() {
   return (
     <div>
       <ul required multiple>
-        <div className = "cards">
-        {tags.map((tag) => {
-          return (
-            
-             <Card name={tag.name} pathname={`/tag/${tag.id}`} description=''/>
-            
-          );
-        })}
+        <div className="cards">
+          {tags.map((tag) => {
+            return (
+              <Card
+                name={tag.name}
+                pathname={`/tag/${tag.id}`}
+                description=""
+              />
+            );
+          })}
         </div>
       </ul>
     </div>

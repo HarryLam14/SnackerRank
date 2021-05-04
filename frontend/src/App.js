@@ -1,10 +1,12 @@
 import './App.css';
-import Navbar from "./components/Navbar"
+import CategoryDisplay from "./components/CategoryDisplay";
+import Card from "./components/Card";
 
 function App() {
   return (
     <div className="App">
-      <CategoryDisplay tag = "Asian" />
+      {/*<CategoryDisplay tag = "Asian" />*/}
+      <Card />
     </div>
   );
 }

@@ -8,7 +8,7 @@ class myComponent extends React.Component {
       searchedItems: [],
     };
   }
-  componentDidMount() {
+  componentDidMount(props) {
     const apiUrl = `http://127.0.0.1:8000/search?tag=${props.tag}`;
     fetch(apiUrl)
       .then((response) => response.json())

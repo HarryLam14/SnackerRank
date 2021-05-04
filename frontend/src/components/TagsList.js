@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { tagsAPI } from "../api/tags";
+import { Link } from 'react-router-dom'
+import CategoryDisplay from './CategoryDisplay';
+import Card from './Card.js'
 
 function TagsList() {
   const [tags, setTags] = useState([]);
@@ -15,7 +18,9 @@ function TagsList() {
   }, []);
 
   const handleClick = (e) => {
-    setTargetTag(e.target.value);
+    console.log(e.target.valu);
+    setTargetTag({"tags": e.target.value});
+    console.log(targetTag);
   };
 
   return (
@@ -23,9 +28,17 @@ function TagsList() {
       <ul id="subject" required multiple>
         {tags.map((tag) => {
           return (
-            <li value={tag.id} key={tag.id} onClick={handleClick}>
-              <a href="/">{tag.name}</a>
-            </li>
+            <div className = "cards">
+            <Card name = {tag.name} id = {tag.id} pathname = {`/tag/${tag.id}`} description = ''/>
+            </div>
+           /*  <li value={tag.id} key={tag.id}>
+              <Link value={tag.id} to={{
+                pathname: '/tag/:targetTag',
+                // state: {
+                //   targetTag: targetTag
+                // }
+              }} onClick={handleClick}>{tag.name}</Link>
+            </li> */
           );
         })}
       </ul>

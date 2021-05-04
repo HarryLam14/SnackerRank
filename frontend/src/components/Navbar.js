@@ -9,7 +9,7 @@ const Navbar = () => {
                 <button>Search</button>
                 <input type="text" placeholder="Search.."/>
             </div>
-            <img className='logo' src={image} alt="SnackerRank logo" />
+            <Link to='/'><img className='logo' src={image} alt="SnackerRank logo" /></Link>
             <div className="buttonsContainer">
                 <Link to='/random'>
                     <p>Random</p>

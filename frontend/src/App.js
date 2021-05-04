@@ -1,10 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar.js'
 import Article from './components/Article.js'
 import Footer from './components/Footer.js'
+import SnackDetail from "./components/SnackDetail.js";
+import TagsList from "./components/TagsList.js";
+import Card from "./components/Card.js";
+import CategoryDisplay from "./components/CategoryDisplay.js"
 
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route, useParams} from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 // currently just testing in App.js,
@@ -60,29 +63,42 @@ function App() {
     <Router>
     <div className="App">
       <Navbar />
-      <Header loggedIn={loggedIn} />
       <div className="pageBody">
+      
+      <Route exact path='/' >
         <Article />
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="username"
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="username"
-        ></input>
-        <br></br>
-        <input
-          type="password"
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="password"
-        ></input>
-        <br></br>
-        <input type="submit" value="Login"></input>
-      </form>
+        <TagsList />
+      </Route>
 
-      <br></br>
+      <Route path='/tag/:tags'>
+        <CategoryDisplay />
+      </Route>
+
+      <Route exact path='/login' >
+        <>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              name="username"
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
+            ></input>
+            <br></br>
+            <input
+              type="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password">
+              </input>
+            <br></br>
+            <input type="submit" value="Login"></input>
+          </form>
+          <br></br>
+        </>
+      </Route>
+
       <button onClick={userLogout}>Logout</button>
+      <SnackDetail snack_id="1" />
       </div>
       <Footer />
     </div>

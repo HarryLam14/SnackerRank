@@ -9,7 +9,7 @@ function SnackDetail({ snack_id }) {
   useEffect(() => {
     snacksAPI.getSnack(snack_id).then(
       (snack) => {
-        setSnack(snack);
+        setSnack([snack]);
       },
       (error) => console.log(error)
     );

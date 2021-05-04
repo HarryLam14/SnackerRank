@@ -1,21 +1,56 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { accountsAPI } from "./api/accounts";
-import { snacksAPI } from "./api/snacks";
-import _ from "lodash";
-import Header from "./layout/Header";
+import { snacksAPI } from "../api/snacks";
+import Card from "./Card.js"
+import "./Card.css"
+import { withRouter } from "react-router";
+import {useParams} from "react-router-dom";
 
-class myComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      searchedItems: [],
-    };
-  }
-  componentDidMount(props) {
-    snacksAPI.getSnacks(props.tag)
+function CategoryDisplay() {
+
+  const [items, setItems] = useState([]);
+  const [searchedItems, setSearchedItems] = useState([]);
+  const targetTagID = useParams();
+
+useEffect(() => {
+  snacksAPI.getSnacks(null, targetTagID).then((data) => {
+    setItems(data);
   })
+  console.log(items);
+  console.log(targetTagID);
+}, [])
+
+  return (
+    <div className="container">
+        <div>
+          <h1>Items</h1>
+          <p>Click an item to get more info</p>
+          <div className ="cards">
+            {items.map((items) => ( 
+              <Card name = {items.name} description = ""/>
+          ))}
+          </div>
+        </div>
+        {/* Need to make this change the state to only show searched items */}
+      </div>
+  )
+}
+
+export default withRouter(CategoryDisplay)
+
+// class myComponent extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       items: [],
+//       searchedItems: [],
+//       targetTagID: 0,
+//       targetTag: {"tags": 1}
+//     };
+//   }
+
+  
+  
 
  /*  componentDidMount(props) {
     const apiUrl = `http://127.0.0.1:8000/search?tag=${props.tag}`;
@@ -41,38 +76,21 @@ class myComponent extends React.Component {
       });
   }; */
 
-  render() {
-    return (
-      <div className="container">
-        <div>
-          <h1>Items</h1>
-          <p>Click an item to get more info</p>
-          {this.state.items.map((items) => (
-            <div>
-              <button
-                className="fetch-button"
-                onClick={() => {
-                  this.searchItems({ items });
-                }}
-              >
-                {items.id}. {items.name}
-              </button>
-            </div>
-          ))}
-        </div>
-        {/* Need to make this change the state to only show searched items */}
-        <div>
-          <h1>More Info</h1>
-          {this.state.searchedItems.map((searchedItems) => (
-            <div>
-              <h3>{searchedItems.name}</h3>
-              {searchedItems.description}
-              <br />
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-}
-export default myComponent;
+//   render() {
+//     return (
+//       <div className="container">
+//         <div>
+//           <h1>Items</h1>
+//           <p>Click an item to get more info</p>
+//           <div className ="cards">
+//             {this.state.items.map((items) => ( 
+//               <Card name = {items.name} description = ""/>
+//           ))}
+//           </div>
+//         </div>
+//         {/* Need to make this change the state to only show searched items */}
+//       </div>
+//     );
+//   }
+// }
+// export default withRouter(myComponent);

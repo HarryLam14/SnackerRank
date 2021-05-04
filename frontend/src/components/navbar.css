@@ -1,0 +1,39 @@
+.logo {
+    width: 300px;
+    padding-left: 4rem;
+    padding-top: 5px;
+  }
+  
+.navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 15px;
+    background-color: var(--blue);
+    width: 100vw;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+}
+
+.buttonsContainer > * {
+    margin: 1rem 2rem;
+}
+
+button {
+    margin: 1rem 1rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: var(--coral);
+    color: white;
+    box-shadow: none;
+    border-style: solid;
+}
+
+p {
+    color: white;
+}

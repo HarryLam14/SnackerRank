@@ -1,0 +1,32 @@
+:root{
+    --footerHeight: 200px;
+}
+
+html, body {
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  html {
+    overflow-x: hidden;
+  }
+  
+  .pageBody {
+    padding-bottom: var(--footerHeight);
+  }
+  
+  footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: var(--darkblue);
+    color: var(--white);
+    text-align: center;
+    height: var(--footerHeight);
+    margin-top: var(--footerHeight);
+  }
+  
+  .footer-text {
+    padding: 70px 0;
+    text-align: center;
+  } 

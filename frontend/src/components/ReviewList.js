@@ -11,7 +11,7 @@ function ReviewList({ snack_id }) {
       },
       (error) => console.log(error)
     );
-  }, []);
+  }, [snack_id]);
 
   return (
     <div>

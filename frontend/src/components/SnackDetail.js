@@ -16,7 +16,7 @@ function SnackDetail() {
       },
       (error) => console.log(error)
     );
-  }, []);
+  }, [snack_id]);
 
   return (
     <div>

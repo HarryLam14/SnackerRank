@@ -31,14 +31,6 @@ function TagsList() {
             <div className = "cards">
             <Card name = {tag.name} id = {tag.id} pathname = {`/tag/${tag.id}`} description = ''/>
             </div>
-           /*  <li value={tag.id} key={tag.id}>
-              <Link value={tag.id} to={{
-                pathname: '/tag/:targetTag',
-                // state: {
-                //   targetTag: targetTag
-                // }
-              }} onClick={handleClick}>{tag.name}</Link>
-            </li> */
           );
         })}
       </ul>

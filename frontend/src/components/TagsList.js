@@ -21,6 +21,7 @@ function TagsList() {
           {tags.map((tag) => {
             return (
               <Card
+                key={tag.id}
                 name={tag.name}
                 pathname={`/tag/${tag.id}`}
                 description=""

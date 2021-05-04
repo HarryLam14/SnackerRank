@@ -19,7 +19,7 @@ function SnacksByTag() {
     <div className="container">
       <div>
         <h1>Snacks</h1>
-        <p>{snacks.length ? "Click an item to get more info" : "No results"}</p>
+        <i>{snacks.length ? "Click an item to get more info" : "No results"}</i>
         <div className="cards">
           {snacks.map((snack) => (
             <Card

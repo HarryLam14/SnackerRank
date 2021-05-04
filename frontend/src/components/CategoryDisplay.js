@@ -37,7 +37,7 @@ class myComponent extends React.Component {
       <div className="container">
         <div>
           <h1>Items</h1>
-          <p>CLick an item to get more info</p>
+          <p>Click an item to get more info</p>
           {this.state.items.map((items) => (
             <div>
               <button

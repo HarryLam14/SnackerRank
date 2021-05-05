@@ -10,6 +10,7 @@ function SnackDetail({ loggedIn }) {
   const [snack, setSnack] = useState([]);
   const [tags, setTags] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [showForm, setShowForm] = useState(false);
   const snack_id = useParams();
 
   useEffect(() => {
@@ -22,6 +23,10 @@ function SnackDetail({ loggedIn }) {
       (error) => console.log(error)
     );
   }, [snack_id]);
+
+  const toggleForm = (e) => {
+    setShowForm(!showForm);
+  };
 
   return (
     <div>
@@ -42,8 +47,14 @@ function SnackDetail({ loggedIn }) {
           </ul>
           <br />
           <ReviewList reviews={reviews} /> <br />
-          <h3>Add a Review!</h3>
-          {loggedIn && <AddReview snack_id={snack_id["id"]} />}
+          {loggedIn ? (
+            <button onClick={toggleForm}>Add a Review!</button>
+          ) : (
+            <Link className="logoutBtn" to="/login">
+              <button>Add a Review!</button>
+            </Link>
+          )}
+          {loggedIn && showForm && <AddReview snack_id={snack_id["id"]} />}
         </div>
       </div>
     </div>

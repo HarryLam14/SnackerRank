@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { reviewsAPI } from "../api/reviews";
 
-function AddReview({ snack_id }) {
-  const [reviews, setReviews] = useState([]);
+function AddReview({ snack_id, newReview }) {
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState();
   const [dateTime] = useState(`${new Date().toISOString().split(".")[0]}Z`);
@@ -17,21 +15,14 @@ function AddReview({ snack_id }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newReview = {
+    const review = {
       reviewtext: reviewText,
       rating: rating,
       snack_id: snack_id,
       pub_date: dateTime,
     };
-    reviewsAPI
-      .addReview(newReview)
-      .then((data) => {
-        setReviews([...reviews, data]);
-        e.target.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    newReview(review);
+    e.target.reset();
   };
 
   return (
@@ -39,7 +30,7 @@ function AddReview({ snack_id }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Description"
+          placeholder="Comment"
           onChange={handleDescriptionChange}
           required
         />

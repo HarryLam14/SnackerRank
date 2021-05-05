@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
+import { reviewsAPI } from "../api/reviews";
 import { Link, useParams } from "react-router-dom";
 import ReviewList from "./ReviewList";
 import AddReview from "./AddReview";
@@ -28,6 +29,17 @@ function SnackDetail({ loggedIn }) {
     setShowForm(!showForm);
   };
 
+  const newReview = (review) => {
+    reviewsAPI
+      .addReview(review)
+      .then((data) => {
+        setReviews([...reviews, data]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <div id="roundedcontainer">
@@ -54,7 +66,9 @@ function SnackDetail({ loggedIn }) {
               <button>Add a Review!</button>
             </Link>
           )}
-          {loggedIn && showForm && <AddReview snack_id={snack_id["id"]} />}
+          {loggedIn && showForm && (
+            <AddReview snack_id={snack_id["id"]} newReview={newReview} />
+          )}
         </div>
       </div>
     </div>

@@ -18,9 +18,9 @@ function ReviewList({ snack_id }) {
       {reviews.length ? (
         <div>
           <table>
+            <caption>Reviews</caption>
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Rating</th>
@@ -31,11 +31,10 @@ function ReviewList({ snack_id }) {
             <tbody>
               {reviews.map((review) => (
                 <tr key={review.id}>
-                  <td>{review.id}</td>
                   <td>{review.user}</td>
                   <td>{review.reviewtext}</td>
                   <td>{review.rating}</td>
-                  <td>{review.pub_date}</td>
+                  <td>{review.pub_date.split("T")[0]}</td>
                 </tr>
               ))}
             </tbody>

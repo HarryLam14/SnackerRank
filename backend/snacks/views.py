@@ -34,3 +34,6 @@ class ReviewView(viewsets.ModelViewSet):
 
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["snack_id"]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)

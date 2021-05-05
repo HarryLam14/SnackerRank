@@ -8,7 +8,7 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('user', 'rating', 'reviewtext', 'snack_id', 'pub_date')
+    list_display = ('owner', 'rating', 'reviewtext', 'snack_id', 'pub_date')
 
 # Register your models here.
 

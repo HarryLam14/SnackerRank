@@ -46,12 +46,6 @@ function AddReview({ snack_id }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Name"
-          onChange={handleNameChange}
-          required
-        />
-        <input
-          type="text"
           placeholder="Description"
           onChange={handleDescriptionChange}
           required

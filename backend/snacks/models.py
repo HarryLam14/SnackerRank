@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 def upload_to(instance, filename):
     return '{filename}'.format(filename=filename)
@@ -23,7 +24,8 @@ class Snack(models.Model):
     
 class Review(models.Model):
     snack_id = models.ForeignKey(Snack, on_delete=models.SET_NULL, null=True)
-    user = models.CharField(max_length=50)
+    owner = models.ForeignKey(
+        "auth.User", on_delete=models.CASCADE, related_name="reviews", null=True, blank=True)
     rating = models.FloatField(validators=[MinValueValidator(0),
                                        MaxValueValidator(5)])
     reviewtext = models.CharField(max_length=1000)

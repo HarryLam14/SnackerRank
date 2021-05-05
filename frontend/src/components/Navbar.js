@@ -27,6 +27,7 @@ const Navbar = ({ loggedIn, userLogout }) => {
           <button id="searchBtn" ref={btnRef}>Search</button>
         </Link>
         <input
+          className="search"
           type="text"
           placeholder="Search.."
           onChange={handleSearchChange}

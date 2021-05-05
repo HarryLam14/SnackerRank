@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
 import { useParams } from "react-router-dom";
 import ReviewList from "./ReviewList";
+import AddReview from "./AddReview";
 import "../static/Card.css";
 import "../static/snackdetail.css";
 
@@ -26,6 +27,7 @@ function SnackDetail() {
           <h1>{snack.name}</h1>
           <p>{snack.description}</p>
           <ReviewList snack_id={snack_id["id"]} />
+          <AddReview />
         </div>
       </div>
     </div>

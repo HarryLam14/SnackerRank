@@ -26,6 +26,7 @@ class Card extends React.Component {
     super(props);
     this.state = {
       name: props.name,
+      image: props.image,
       description: props.description,
       pathname: props.pathname,
     };
@@ -38,6 +39,7 @@ class Card extends React.Component {
           <h4>
             <b>{this.state.name}</b>
           </h4>
+          <img src={this.state.image} alt=""></img>
           <p className="card-body">{this.state.description}</p>
           <Link to={this.state.pathname}>
             <button>Click me</button>

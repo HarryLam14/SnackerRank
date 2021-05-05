@@ -25,6 +25,7 @@ function SnacksByTag() {
             <Card
               key={snack.id}
               name={snack.name}
+              image={snack.image}
               description=""
               pathname={`/snack/${snack.id}`}
             />

@@ -10,6 +10,7 @@ import SnacksByTag from "./components/SnacksByTag.js";
 import SignIn from "./components/SignIn";
 import AddSnack from "./components/AddSnack";
 import SearchResults from "./components/SearchResults";
+import ScrollToTop from "./components/ScrollToTop";
 import _ from "lodash";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
@@ -59,6 +60,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <Navbar loggedIn={loggedIn} userLogout={userLogout} />
         <div className="pageBody">

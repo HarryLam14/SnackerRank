@@ -13,6 +13,11 @@
     align-items: flex-start;
 }
 
+.roundedcontainer ul {
+    padding: 0;
+    margin: 0;
+}
+
 #snacktext { 
     text-align: left;
     max-width: 80%;
@@ -28,16 +33,35 @@
     width: auto;
 }
 
-.horizontaltags{
+.horizontaltags {
     list-style: none;
+}
+
+.horizontaltags li:hover {
+    filter: saturate(130%);
+    filter: brightness(110%);
+    transition: filter 0.1s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 4px 5px 0 var(--coral);
+    
+}
+
+.horizontaltags * {
+    text-decoration: none;
+    color: white;
+}
+
+.horizontaltags h6 {
+    color: black;
 }
 
 .horizontaltags li{
     display: inline;
     border-radius: 15px;    
-    margin-right: 5px;  
+    margin: 0 3px;  
     background-color: rgb(245, 94, 94);
     padding: 10px;
+    
 }
 
 .horizontaltags li:nth-child(3n+2){
@@ -45,6 +69,7 @@
 }
 
 .horizontaltags li:nth-child(3n+3){
-    background-color: rgb(250, 250, 100);   
+    background-color: #FFBE0B;   
 }
+
 

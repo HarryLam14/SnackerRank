@@ -30,3 +30,8 @@ App {
   position: relative;
   min-height: 100vh;
 }
+
+.cardsContainer {
+  padding: 0;
+  margin: 0 0 2rem;
+}

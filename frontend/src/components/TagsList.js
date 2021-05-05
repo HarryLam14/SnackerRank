@@ -16,7 +16,7 @@ function TagsList() {
 
   return (
     <div>
-      <ul required multiple>
+      <ul className="cardsContainer" required multiple>
         <div className="cards">
           {tags.map((tag) => {
             return (

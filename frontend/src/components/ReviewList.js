@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { reviewsAPI } from "../api/reviews";
+import "../static/review.css"
 
 function ReviewList({ snack_id }) {
   const [reviews, setReviews] = useState([]);
@@ -18,7 +19,7 @@ function ReviewList({ snack_id }) {
       {reviews.length ? (
         <div>
           <table>
-            <caption>Reviews</caption>
+            <caption><b>Reviews</b></caption>
             <thead>
               <tr>
                 <th>Name</th>

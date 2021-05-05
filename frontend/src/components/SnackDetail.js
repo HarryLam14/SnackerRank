@@ -38,7 +38,8 @@ function SnackDetail() {
             )}
           </ul>
           <br/>
-          <ReviewList snack_id={snack_id["id"]} />
+          <ReviewList snack_id={snack_id["id"]} /> <br/>
+          <h3>Add a Review!</h3>
           <AddReview snack_id={snack_id["id"]}/>
           
         </div>

@@ -9,9 +9,6 @@ function AddReview({ snack_id }) {
   const [dateTime] = useState(`${new Date().toISOString().split(".")[0]}Z`);
   // const [snackID] = useState(snack_id);
 
-  const handleNameChange = (e) => {
-    setUser(e.target.value);
-  };
 
   const handleDescriptionChange = (e) => {
     setReviewText(e.target.value);

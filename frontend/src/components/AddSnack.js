@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
 import { tagsAPI } from "../api/tags";
+import  camera  from "../images/camera-icon.png";
 
 function AddSnack() {
   const [snacks, setSnacks] = useState([]);
@@ -58,7 +59,8 @@ function AddSnack() {
   };
 
   return (
-    <div>
+    <div className = "container">
+      <h3>Snack name</h3>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -66,6 +68,7 @@ function AddSnack() {
           onChange={handleNameChange}
           required
         />
+        <h4>Upload image</h4>
         <input
           accept="image/*"
           // className={classes.input}
@@ -73,13 +76,16 @@ function AddSnack() {
           onChange={handleImageChange}
           name="image"
           type="file"
-        />
+        /> <img src={camera} className="camera-icon" alt = ""/>
+        <h3>Snack description</h3>
         <input
           type="text"
           placeholder="Description"
           onChange={handleDescriptionChange}
           required
         />
+        <h3>Select tags</h3>
+        <p>Hold CTRL/command to select multiple</p>
         <select id="" onChange={handleTagsChange} required multiple>
           {tags.map((tag) => {
             return (

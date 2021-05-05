@@ -8,13 +8,6 @@ class TagSerializer(serializers.ModelSerializer):
         model = Tag 
         fields = "__all__"
 
-class SnackSerializer(serializers.ModelSerializer):
-    tags = TagSerializer(read_only=True, many=True)
-
-    class Meta:
-        model = Snack 
-        fields = "__all__"
-
 class UserSerializer(serializers.ModelSerializer):
     reviews = serializers.HyperlinkedRelatedField(
         view_name="review-detail", many=True, read_only=True)
@@ -28,4 +21,12 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review 
+        fields = "__all__"
+
+class SnackSerializer(serializers.ModelSerializer):
+    tags = TagSerializer(read_only=True, many=True)
+    reviews = ReviewSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Snack 
         fields = "__all__"

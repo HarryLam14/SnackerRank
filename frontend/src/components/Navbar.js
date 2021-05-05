@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import image from "../images/logo.svg";
 import "../static/navbar.css";
+import { FaBars } from 'react-icons/fa';
 
 const Navbar = ({ loggedIn, userLogout }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -38,6 +39,9 @@ const Navbar = ({ loggedIn, userLogout }) => {
       <Link className="logoContainer" to="/">
         <img className="logo" src={image} alt="SnackerRank logo" />
       </Link>
+      <button className='nav-toggle'>
+        <FaBars />
+      </button>
       <div className="buttonsContainer">
         <Link to="/random">
           <p>Random</p>
@@ -56,7 +60,7 @@ const Navbar = ({ loggedIn, userLogout }) => {
             <Link to="/add-snack">
               <p>Add snack</p>
             </Link>
-            <Link to="/">
+            <Link className="logoutBtn" to="/">
               <button onClick={userLogout}>Sign out</button>
             </Link>
           </>

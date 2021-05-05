@@ -3,7 +3,7 @@ import image from "../images/article.jpg";
 
 const Article = () => {
   return (
-    <div className="mainArticle">
+    <div className="mainArticle fade-in">
       <div className="articleBody">
         <h1>
           Snacks: <br />

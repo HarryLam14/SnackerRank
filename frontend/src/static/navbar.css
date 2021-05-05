@@ -1,25 +1,29 @@
 .logo {
-    width: 300px;
-    margin
+    width: 275px;
+    margin-left: -55px;
   }
 
 .navBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-right: 15px;
     background-color: var(--blue);
     width: 100vw;
 }
 
 .navBar > {
-    width: 30%;
+    width: 33%;
+}
+
+.nav-toggle {
+    display: none;
 }
 
 @media  only screen and (max-width: 1040px) {
     .navBar {
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
     }
     .navBar * {
         margin: 0;
@@ -27,9 +31,36 @@
     .logo {
         width: 250px;
       }
-      .searchContainer{
-          justify-content: center;
-      }
+    .logoContainer {
+        order: -1;
+        padding: 0;
+    }
+    .searchContainer{
+        justify-content: center;
+    }
+
+    .buttonsContainer {
+        width: 100vw;
+        justify-content: space-around;
+    }
+
+    .nav-toggle {
+        display: block;
+        width: 50px;
+    }
+}
+
+.buttonsContainer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 18px 27px;
+}
+
+.buttonsContainer p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .searchContainer {
@@ -43,14 +74,20 @@
 
 .buttonsContainer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 2px;
 }
 
+.logoutBtn button {
+    min-width: 80px;
+}
+
 .buttonsContainer > * {
-    margin: 1rem 2rem 1rem 1rem;
+    margin: 1rem 1rem 1rem 1rem;
     text-decoration: none;
+    text-align: center;
+    flex: 1 0 0;
 }
 
 button {
@@ -114,27 +151,50 @@ a:hover {
 
 
 .search[type=text] {
-    width: 40%;
+    width: 50%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 15px;
     font-size: 16px;
     background-color: white;
     background-image: url('../images/search-icon.png');
-    background-position: 10px 10px; 
+    background-position: 0 2px; 
+    background-size: 35px 35px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
     transition: width 0.4s ease-in-out;
 }
-  
-input[type=text]:focus {
-    width: 70%;
+
+input[type=text] {
+    border-radius:10px;
+    transition: width 0.4s ease-in-out;
+}
+
+input:focus {
+    outline:none;
+}
+
+input[type=number] {
+    border-radius:10px;
+    margin-left: 8px;
+}
+
+.search[type=text]:focus {
+    width: 80%;
+    transition: width 0.4s ease-in-out;
+    outline: none;
 }
 
 select {
-    width: 40%;
+    width: 45%;
     padding: 16px 20px;
     border: none;
     border-radius: 4px;
     background-color: #f1f1f1;
+}
+
+.camera-icon {
+    width: 2%;
+    height: 2%;
+    padding-right: 5px;
 }

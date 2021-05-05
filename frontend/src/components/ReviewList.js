@@ -1,13 +1,14 @@
-import "../static/review.css"
+import "../static/review.css";
 
 function ReviewList({ reviews }) {
-
   return (
     <>
       {reviews.length ? (
         <div>
           <table>
-            <caption><b>Reviews</b></caption>
+            <caption>
+              <b>Reviews</b>
+            </caption>
             <thead>
               <tr>
                 <th>Name</th>

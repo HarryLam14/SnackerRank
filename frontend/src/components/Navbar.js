@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import image from "../images/logo.svg";
 import "../static/navbar.css";
-import { FaBars } from 'react-icons/fa';
+import { FaBars } from "react-icons/fa";
 
 const Navbar = ({ loggedIn, userLogout }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,12 +11,12 @@ const Navbar = ({ loggedIn, userLogout }) => {
     setSearchQuery(e.target.value);
   };
 
-  const handleKeypress = e => {
+  const handleKeypress = (e) => {
     //handle user pressing the enter key for search
-  if (e.keyCode === 13) {
-    console.log("Enter pressed")/*handleSubmit();*/
-    btnRef.current.click()
-  }
+    if (e.keyCode === 13) {
+      console.log("Enter pressed"); /*handleSubmit();*/
+      btnRef.current.click();
+    }
   };
 
   const btnRef = useRef(null);
@@ -25,7 +25,9 @@ const Navbar = ({ loggedIn, userLogout }) => {
     <nav className="navBar">
       <div className="searchContainer">
         <Link to={`/search=${searchQuery}`}>
-          <button id="searchBtn" ref={btnRef}>Search</button>
+          <button id="searchBtn" ref={btnRef}>
+            Search
+          </button>
         </Link>
         <input
           className="search"
@@ -39,7 +41,7 @@ const Navbar = ({ loggedIn, userLogout }) => {
       <Link className="logoContainer" to="/">
         <img className="logo" src={image} alt="SnackerRank logo" />
       </Link>
-      <button className='nav-toggle'>
+      <button className="nav-toggle">
         <FaBars />
       </button>
       <div className="buttonsContainer">

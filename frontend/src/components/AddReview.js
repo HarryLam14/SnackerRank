@@ -3,12 +3,9 @@ import { reviewsAPI } from "../api/reviews";
 
 function AddReview({ snack_id }) {
   const [reviews, setReviews] = useState([]);
-  const [user, setUser] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState();
   const [dateTime] = useState(`${new Date().toISOString().split(".")[0]}Z`);
-  // const [snackID] = useState(snack_id);
-
 
   const handleDescriptionChange = (e) => {
     setReviewText(e.target.value);
@@ -21,7 +18,6 @@ function AddReview({ snack_id }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newReview = {
-      user: user,
       reviewtext: reviewText,
       rating: rating,
       snack_id: snack_id,

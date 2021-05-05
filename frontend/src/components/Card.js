@@ -42,7 +42,10 @@ class Card extends React.Component {
           <img src={this.state.image} alt=""></img>
           <p className="card-body">{this.state.description}</p>
           <Link to={this.state.pathname}>
-            <button> <span> See more </span> </button>
+            <button>
+              {" "}
+              <span> See more </span>{" "}
+            </button>
           </Link>
         </div>
       </div>

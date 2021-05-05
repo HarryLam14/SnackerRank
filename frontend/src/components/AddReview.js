@@ -6,7 +6,7 @@ function AddReview({ snack_id }) {
   const [user, setUser] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState();
-  const [dateTime] = useState(Date());
+  const [dateTime] = useState(`${new Date().toISOString().split(".")[0]}Z`);
   const [snackID] = useState(snack_id);
 
   const handleNameChange = (e) => {
@@ -60,6 +60,8 @@ function AddReview({ snack_id }) {
           type="number"
           placeholder="Rating"
           onChange={handleRatingChange}
+          min="0"
+          max="5"
           required
         />
         <button type="submit">Submit</button>

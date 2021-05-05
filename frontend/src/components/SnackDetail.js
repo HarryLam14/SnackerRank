@@ -6,9 +6,10 @@ import AddReview from "./AddReview";
 import "../static/Card.css";
 import "../static/snackdetail.css";
 
-function SnackDetail() {
+function SnackDetail({ loggedIn }) {
   const [snack, setSnack] = useState([]);
   const [tags, setTags] = useState([])
+  const [reviews, setReviews] = useState([])
   const snack_id = useParams();
 
   useEffect(() => {
@@ -16,6 +17,7 @@ function SnackDetail() {
       (snack) => {
         setSnack(snack);
         setTags(snack.tags);
+        setReviews(snack.reviews);
       },
       (error) => console.log(error)
     );
@@ -38,9 +40,9 @@ function SnackDetail() {
             )}
           </ul>
           <br/>
-          <ReviewList snack_id={snack_id["id"]} /> <br/>
+          <ReviewList reviews={reviews} /> <br/>
           <h3>Add a Review!</h3>
-          <AddReview snack_id={snack_id["id"]}/>
+          {loggedIn && <AddReview snack_id={snack_id["id"]}/>}
           
         </div>
       </div>

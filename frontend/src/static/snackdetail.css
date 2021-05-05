@@ -7,18 +7,15 @@
     min-height: 200px; 
     margin: 50px 50px 2rem;
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-around;
     flex-direction: row;
     align-items: flex-start;
 }
 
-#roundedcontainer > * {
-    flex: 0 0 auto;
-}
-
 #snacktext { 
     text-align: left;
-    max-width: 75%;
+    max-width: 80%;
 }
 
 #snacktext p {
@@ -30,3 +27,24 @@
     max-width: 50vh;
     width: auto;
 }
+
+.horizontaltags{
+    list-style: none;
+}
+
+.horizontaltags li{
+    display: inline;
+    border-radius: 15px;    
+    margin-right: 5px;  
+    background-color: rgb(245, 94, 94);
+    padding: 10px;
+}
+
+.horizontaltags li:nth-child(3n+2){
+    background-color: rgba(32, 229, 255, 0.89);   
+}
+
+.horizontaltags li:nth-child(3n+3){
+    background-color: rgb(250, 250, 100);   
+}
+

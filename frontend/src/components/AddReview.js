@@ -7,7 +7,7 @@ function AddReview({ snack_id }) {
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState();
   const [dateTime] = useState(`${new Date().toISOString().split(".")[0]}Z`);
-  const [snackID] = useState(snack_id);
+  // const [snackID] = useState(snack_id);
 
   const handleNameChange = (e) => {
     setUser(e.target.value);
@@ -27,7 +27,7 @@ function AddReview({ snack_id }) {
       user: user,
       reviewtext: reviewText,
       rating: rating,
-      snack_id: snackID,
+      snack_id: snack_id,
       pub_date: dateTime,
     };
     reviewsAPI
@@ -60,7 +60,7 @@ function AddReview({ snack_id }) {
           type="number"
           placeholder="Rating"
           onChange={handleRatingChange}
-          min="0"
+          min="1"
           max="5"
           required
         />

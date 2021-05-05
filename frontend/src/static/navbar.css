@@ -53,6 +53,7 @@ button {
     color: white;
     box-shadow: none;
     border-style: solid;
+    border-color: var(--coral)
 }
 
 button:hover {
@@ -60,6 +61,33 @@ button:hover {
     filter: brightness(110%);
     transition: filter 0.1s ease-in-out;
     cursor: pointer;
+    background-color: #FFBE0B;
+    box-shadow: 0 4px 5px 0 var(--coral);
+    border-color:#FFBE0B;
+}
+
+.card button span {
+    cursor: pointer;
+    padding: 0 25px;
+    transition: 0.5s;
+}
+  
+.card button span:after {
+    content: '\00bb';
+    
+    opacity: 0;
+    top: 0;
+    
+    transition: 0.5s;
+}
+  
+.card button:hover span {
+    padding-right: 25px;
+}
+  
+.card button:hover span:after {
+    opacity: 1;
+    right: 0;
 }
 
 .navBar p {

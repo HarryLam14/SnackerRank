@@ -23,7 +23,8 @@ function TagsList() {
               <Card
                 key={tag.id}
                 name={tag.name}
-                pathname={`/tag/${tag.id}`}
+                image={tag.image}
+                pathname={`/tag/${tag.name}`}
                 description=""
               />
             );

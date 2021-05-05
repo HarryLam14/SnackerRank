@@ -32,6 +32,7 @@ const logout = async () => {
       if (res.status === 204) {
         localStorage.removeItem("token");
       }
+      return res;
     })
     .catch((err) => console.log(err));
 };

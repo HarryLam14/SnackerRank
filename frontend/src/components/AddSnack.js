@@ -6,7 +6,7 @@ function AddSnack() {
   const [snacks, setSnacks] = useState([]);
   const [tags, setTags] = useState([]);
   const [name, setName] = useState("");
-  const [image, setImage] = useState()
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [selectTags, setSelectTags] = useState([]);
 
@@ -68,19 +68,19 @@ function AddSnack() {
         />
         <input
           accept="image/*"
-          className={classes.input}
+          // className={classes.input}
           id="Snack-image"
           onChange={handleImageChange}
           name="image"
           type="file"
         />
-          <input
+        <input
           type="text"
           placeholder="Description"
           onChange={handleDescriptionChange}
           required
         />
-        <select id="subject" onChange={handleTagsChange} required multiple>
+        <select id="" onChange={handleTagsChange} required multiple>
           {tags.map((tag) => {
             return (
               <option value={tag.id} key={tag.id}>

@@ -1,24 +1,23 @@
 import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
+import { useParams } from "react-router-dom";
 import Card from "./Card.js";
 import "../static/Card.css";
-import { withRouter } from "react-router";
-import { useParams } from "react-router-dom";
 
-function SnacksByTag() {
+function SearchResults() {
   const [snacks, setSnacks] = useState([]);
-  const targetTagID = useParams();
+  const searchQuery = useParams();
 
   useEffect(() => {
-    snacksAPI.getSnacks(null, targetTagID).then((data) => {
+    snacksAPI.getSnacks(searchQuery["search"], null).then((data) => {
       setSnacks(data);
     });
-  }, [targetTagID]);
+  }, [searchQuery]);
 
   return (
     <div className="container">
       <div>
-        <h1>Snacks</h1>
+        <h1>Search results</h1>
         <i>{snacks.length ? "Click an item to get more info" : "No results"}</i>
         <div className="cards">
           {snacks.map((snack) => (
@@ -36,4 +35,4 @@ function SnacksByTag() {
   );
 }
 
-export default withRouter(SnacksByTag);
+export default SearchResults;

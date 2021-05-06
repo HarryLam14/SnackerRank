@@ -56,3 +56,8 @@ class ReviewView(viewsets.ModelViewSet):
     #     if user_review:
     #         raise PermissionDenied('You have already given your review on this post.')
     #     serializer.save(owner=self.request.user)
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = UserSerializer
+    queryset = User.objects.all()

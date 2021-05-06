@@ -42,14 +42,18 @@ class Card extends React.Component {
           </h4>
           <img src={this.state.image} alt=""></img>
           <p className="card-body">{this.state.description}</p>
-          {this.state.score ? (<ReactStars 
-            count={5}
-            value={this.state.score}
-            edit={false}
-            size={30}
-            activeColor="#ffd700"
-            isHalf={true}
-          />):""}
+          {this.state.score ? (
+            <ReactStars
+              count={5}
+              value={this.state.score}
+              edit={false}
+              size={30}
+              activeColor="#ffd700"
+              isHalf={true}
+            />
+          ) : (
+            ""
+          )}
           <Link to={this.state.pathname}>
             <button>
               {" "}

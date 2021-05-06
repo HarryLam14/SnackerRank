@@ -44,7 +44,7 @@ function AddReview({ snack_id, newReview }) {
           onChange={handleRatingChange}
           required
         />
-        <br/>
+        <br />
         <button type="submit">Submit</button>
       </form>
     </div>

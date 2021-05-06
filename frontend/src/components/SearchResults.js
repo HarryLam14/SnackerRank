@@ -11,7 +11,9 @@ function SearchResults() {
 
   useEffect(() => {
     snacksAPI.getSnacks(searchQuery["search"], null).then((data) => {
-      setSnacks(_.orderBy(data, ({ avg_rating }) => avg_rating || "", ["desc"]));
+      setSnacks(
+        _.orderBy(data, ({ avg_rating }) => avg_rating || "", ["desc"])
+      );
     });
   }, [searchQuery]);
 

@@ -24,11 +24,17 @@ const Navbar = ({ loggedIn, userLogout }) => {
   return (
     <nav className="navBar">
       <div className="searchContainer">
-        <Link to={`/search=${searchQuery}`}>
+        {searchQuery === "" ? (
           <button id="searchBtn" ref={btnRef}>
             Search
           </button>
-        </Link>
+        ) : (
+          <Link to={`/search=${searchQuery}`}>
+            <button id="searchBtn" ref={btnRef}>
+              Search
+            </button>
+          </Link>
+        )}
         <input
           className="search"
           type="text"

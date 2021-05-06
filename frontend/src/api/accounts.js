@@ -23,7 +23,7 @@ const logout = async () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${localStorage.getItem("token")}`,
+      ...tokenHeader(),
     },
   };
 

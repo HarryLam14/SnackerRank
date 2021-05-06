@@ -9,14 +9,13 @@ import TagsList from "./components/TagsList.js";
 import SnacksByTag from "./components/SnacksByTag.js";
 import SignIn from "./components/SignIn";
 import AddSnack from "./components/AddSnack";
-import SignUp from "./components/SignUp.js"
+import SignUp from "./components/SignUp.js";
 import SearchResults from "./components/SearchResults";
 import ScrollToTop from "./components/ScrollToTop";
 import LogInRouter from "./components/LogInRouter";
 import _ from "lodash";
-import { BrowserRouter as Router, Route, Redirect, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import "./static/article.css";
-
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -36,6 +35,8 @@ function App() {
       (res) => {
         if (res.status === 200) {
           setLoggedIn(true);
+        } else if (res.status === 400) {
+          alert("Incorrect username or password");
         }
       },
       (error) => console.log(error)
@@ -45,7 +46,7 @@ function App() {
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
   };
 
   const handleUsernameChange = (e) => {
@@ -77,8 +78,7 @@ function App() {
       (res) => {
         if (res.status === 200) {
           setLoggedIn(true);
-        }
-        else if (res.status === 400) {
+        } else if (res.status === 400) {
           alert("Username already exists");
         }
       },
@@ -97,7 +97,7 @@ function App() {
         <div className="pageBody">
           <Route exact path="/">
             <Article />
-            <h2 class="fade-in">Browse Snacks by Tag</h2>
+            <h2 className="fade-in">Browse Snacks by Tag</h2>
             <TagsList />
           </Route>
           <Route path="/tag/:tags">
@@ -105,7 +105,12 @@ function App() {
           </Route>
 
           <Route path="/login/:id">
-            <LogInRouter onSubmit={onSubmit} loggedIn={loggedIn} />
+            <LogInRouter
+              onSubmit={onSubmit}
+              handleUsernameChange={handleUsernameChange}
+              handlePasswordChange={handlePasswordChange}
+              loggedIn={loggedIn}
+            />
           </Route>
 
           <Route exact path="/login">
@@ -128,15 +133,16 @@ function App() {
             <AddSnack />
           </Route>
 
-          <Route exact path = "/sign-up">
-          {loggedIn ? (
+          <Route exact path="/sign-up">
+            {loggedIn ? (
               <Redirect to="/" />
             ) : (
-            <SignUp
-            onSubmit={newUser}
-            handleUsernameChange={handleUsernameChange}
-            handlePasswordChange={handlePasswordChange}
-            handleEmailChange={handleEmailChange}/>
+              <SignUp
+                onSubmit={newUser}
+                handleUsernameChange={handleUsernameChange}
+                handlePasswordChange={handlePasswordChange}
+                handleEmailChange={handleEmailChange}
+              />
             )}
           </Route>
 

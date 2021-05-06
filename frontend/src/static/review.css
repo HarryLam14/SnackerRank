@@ -15,3 +15,12 @@ th {
     background-color: var(--blue);
     color: white;
 }
+
+#reviewheader{
+    display:inline;
+    flex-direction:row;
+}
+
+#reviewheader > *{
+    margin-right: 5px;
+}

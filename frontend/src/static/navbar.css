@@ -1,6 +1,6 @@
 .logo {
     width: 275px;
-    margin-left: -55px;
+    margin-left: 0;
   }
 
 .navBar {
@@ -32,7 +32,7 @@
         width: 250px;
       }
     .logoContainer {
-        order: -1;
+        order: -2;
         padding: 0;
     }
     .searchContainer{
@@ -44,17 +44,18 @@
         justify-content: space-around;
     }
 
-    .nav-toggle {
+   /*  .nav-toggle {
         display: block;
         width: 50px;
-    }
+        order: -1;
+    } */
 }
 
 .buttonsContainer a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 18px 27px;
+    margin: 18px 20px;
 }
 
 .buttonsContainer p {
@@ -87,7 +88,8 @@
     margin: 1rem 1rem 1rem 1rem;
     text-decoration: none;
     text-align: center;
-    flex: 1 0 0;
+    flex: 1 1 0;
+    min-width: 80px;
 }
 
 button {
@@ -170,6 +172,11 @@ input[type=text] {
     transition: width 0.4s ease-in-out;
 }
 
+input[type=password] {
+    border-radius: 10px;
+    transition: width 0.4s ease-in-out;
+}
+
 input:focus {
     outline:none;
 }
@@ -183,18 +190,4 @@ input[type=number] {
     width: 80%;
     transition: width 0.4s ease-in-out;
     outline: none;
-}
-
-select {
-    width: 45%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-
-.camera-icon {
-    width: 2%;
-    height: 2%;
-    padding-right: 5px;
 }

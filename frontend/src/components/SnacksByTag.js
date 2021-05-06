@@ -18,7 +18,7 @@ function SnacksByTag() {
   return (
     <div className="container">
       <div>
-        <h1>Snacks</h1>
+        <h1>{targetTagID["tags"]} Snacks</h1>
         <i>{snacks.length ? "Click an item to get more info" : "No results"}</i>
         <div className="cards">
           {snacks.map((snack) => (

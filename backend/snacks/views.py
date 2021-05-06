@@ -36,28 +36,23 @@ class ReviewView(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["snack_id"]
 
-    def create(self, request, *args, **kwargs):
-        # Override create method to prevent duplicate object creation
-        serializer = ReviewSerializer(data=self.request.data)
-        serializer.is_valid(raise_exception=True)
-        user = self.request.user
-        snack = serializer.validated_data['snack_id']
-        obj, created = Review.objects.get_or_create(owner=user, snack_id=snack, defaults=serializer.validated_data)
-        if created:
-            serializer.save(owner=user)
-            return Response(status=status.HTTP_201_CREATED)
-        else:
-            return Response(status=status.HTTP_409_CONFLICT)
+    # def create(self, request, *args, **kwargs):
+    #     # Override create method to prevent duplicate object creation
+    #     serializer = ReviewSerializer(data=self.request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     user = self.request.user
+    #     snack = serializer.validated_data['snack_id']
+    #     obj, created = Review.objects.get_or_create(owner=user, snack_id=snack, defaults=serializer.validated_data)
+    #     if created:
+    #         serializer.save(owner=user)
+    #         return Response(status=status.HTTP_201_CREATED)
+    #     else:
+    #         return Response(status=status.HTTP_409_CONFLICT)
 
-    # def perform_create(self, serializer):
-    #     # snack_id = get_object_or_404(Snack, slug=slug)
-    #     # Get the reviews posted by the user for this product
-    #     user_review = Review.snack_id.filter(owner=self.request.user)
-    #     if user_review:
-    #         raise PermissionDenied('You have already given your review on this post.')
-    #     serializer.save(owner=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
-class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
+# class UserViewSet(viewsets.ReadOnlyModelViewSet):
+#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+#     serializer_class = UserSerializer
+#     queryset = User.objects.all()

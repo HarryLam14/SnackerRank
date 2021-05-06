@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactStars from "react-rating-stars-component";
 
 function AddReview({ snack_id, newReview }) {
   const [reviewText, setReviewText] = useState("");
@@ -9,8 +10,8 @@ function AddReview({ snack_id, newReview }) {
     setReviewText(e.target.value);
   };
 
-  const handleRatingChange = (e) => {
-    setRating(e.target.value);
+  const handleRatingChange = (newrating) => {
+    setRating(newrating);
   };
 
   const handleSubmit = async (e) => {
@@ -34,12 +35,11 @@ function AddReview({ snack_id, newReview }) {
           onChange={handleDescriptionChange}
           required
         />
-        <input
-          type="number"
-          placeholder="Rating"
+        <ReactStars
+          count={5}
+          size={15}
+          activeColor="#ffd700"
           onChange={handleRatingChange}
-          min="1"
-          max="5"
           required
         />
         <button type="submit">Submit</button>

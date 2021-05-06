@@ -8,9 +8,26 @@
     margin: 50px 50px 2rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-direction: row;
     align-items: flex-start;
+}
+
+#imagedisp{
+    margin: 1rem 3rem 0 1rem;
+    max-width: 40vh;
+    width: auto;
+}
+
+@media  only screen and (max-width: 1040px) {
+    #roundedcontainer {
+        margin: 30px 25px 2rem;
+        padding: 1rem;
+        justify-content: space-around;
+    }
+    #imagedisp {
+        margin: 1rem;
+    }
 }
 
 .roundedcontainer ul {
@@ -20,21 +37,17 @@
 
 #snacktext { 
     text-align: left;
-    max-width: 80%;
+    max-width: 70%;
 }
 
 #snacktext p {
     max-width: 100%;
 }
 
-#imagedisp{
-    margin: 1rem 50px 1rem 1rem;
-    max-width: 50vh;
-    width: auto;
-}
-
 .horizontaltags {
     list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
 }
 
 .horizontaltags li:hover {
@@ -51,6 +64,15 @@
     color: white;
 }
 
+.horizontaltags a {
+    padding: 6px 12px;
+    margin: 0 -1px;
+}
+
+.horizontaltags a:hover {
+    text-decoration: none;
+}
+
 .horizontaltags h6 {
     color: black;
 }
@@ -58,9 +80,9 @@
 .horizontaltags li{
     display: inline;
     border-radius: 15px;    
-    margin: 0 3px;  
+    margin: 0 3px 10px;  
     background-color: rgb(245, 94, 94);
-    padding: 10px;
+    padding: 5px;
     
 }
 
@@ -72,4 +94,27 @@
     background-color: #FFBE0B;   
 }
 
+#tagtitle{
+    background-color: transparent;   
+    color: black;
+    filter: none;
+    filter: none;
+    cursor: initial;
+    box-shadow: initial;
+    font-weight: bold;
+    margin: 0px 10px 0 0;
+}
 
+.tagFlex {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#snacktext > i {
+    margin: 0 0 2rem;
+}
+
+.expandBtn {
+    margin: 1rem 0;
+}

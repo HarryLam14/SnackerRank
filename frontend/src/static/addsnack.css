@@ -1,0 +1,13 @@
+select {
+    width: 45%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+.camera-icon {
+    width: 2%;
+    height: 2%;
+    margin: 5px 5px 0 0;
+}

@@ -3,6 +3,7 @@ import { snacksAPI } from "../api/snacks";
 import { reviewsAPI } from "../api/reviews";
 import { Link, useParams } from "react-router-dom";
 import ReviewList from "./ReviewList";
+import RecentReviews from "./RecentReviews";
 import AddReview from "./AddReview";
 import "../static/Card.css";
 import "../static/snackdetail.css";
@@ -33,10 +34,6 @@ function SnackDetail({ loggedIn }) {
     reviewsAPI
       .addReview(review)
       .then((data) => {
-        if (data.status===409) {
-          alert("User can't add more than one review");
-          return;
-        }
         setReviews([...reviews, data]);
         setShowForm(false);
       })
@@ -52,8 +49,10 @@ function SnackDetail({ loggedIn }) {
         <div id="snacktext">
           <h1>{snack.name}</h1>
           <p>{snack.description}</p>
+          <br/>
           <ul className="horizontaltags">
-            <h6>Tags:</h6>
+            <div className="tagFlex">
+            <li id="tagtitle">Tags:</li>
             {tags.map((tag) => {
               return (
                 <li key={tag.id}>
@@ -61,14 +60,15 @@ function SnackDetail({ loggedIn }) {
                 </li>
               );
             })}
+            </div>
           </ul>
           <br />
-          <ReviewList reviews={reviews} /> <br />
+          <RecentReviews reviews={reviews} /> <br />
           {loggedIn ? (
-            <button onClick={toggleForm}>Add a Review!</button>
+            <button className="expandBtn" onClick={toggleForm}>Add a Review!</button>
           ) : (
             <Link className="logoutBtn" to="/login">
-              <button>Add a Review!</button>
+              <button className="expandBtn">Log in to Review!</button>
             </Link>
           )}
           {loggedIn && showForm && (

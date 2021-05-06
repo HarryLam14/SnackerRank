@@ -12,6 +12,13 @@
     padding: 2rem 0 4rem;
     color: black;
   }
+
+  @media  only screen and (max-width: 1040px) {
+    .articleImage {
+      margin: 1rem 0;
+      padding: 0;
+    }
+  }
   
   .articleImage {
     flex: 0.5 1 500px;

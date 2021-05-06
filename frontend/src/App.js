@@ -9,6 +9,7 @@ import TagsList from "./components/TagsList.js";
 import SnacksByTag from "./components/SnacksByTag.js";
 import SignIn from "./components/SignIn";
 import AddSnack from "./components/AddSnack";
+import SignUp from "./components/SignUp.js"
 import SearchResults from "./components/SearchResults";
 import ScrollToTop from "./components/ScrollToTop";
 import _ from "lodash";
@@ -18,6 +19,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     if (!_.isEmpty(accountsAPI.tokenHeader())) {
@@ -39,6 +41,10 @@ function App() {
     setPassword("");
   };
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  };
+
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -56,6 +62,28 @@ function App() {
       },
       (error) => console.log(error)
     );
+  };
+
+  const newUser = (e) => {
+    e.preventDefault();
+    if (!username || !email || !password) {
+      alert("Please complete all fields");
+      return;
+    }
+    accountsAPI.register(username, email, password).then(
+      (res) => {
+        if (res.status === 200) {
+          setLoggedIn(true);
+        }
+        else if (res.status === 400) {
+          alert("Username already exists");
+        }
+      },
+      (error) => console.log(error)
+    );
+    setUsername("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -91,6 +119,18 @@ function App() {
 
           <Route path="/add-snack">
             <AddSnack />
+          </Route>
+
+          <Route exact path = "/sign-up">
+          {loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+            <SignUp
+            onSubmit={newUser}
+            handleUsernameChange={handleUsernameChange}
+            handlePasswordChange={handlePasswordChange}
+            handleEmailChange={handleEmailChange}/>
+            )}
           </Route>
 
           <Route path="/search=:search">

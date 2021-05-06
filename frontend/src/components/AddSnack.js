@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
 import { tagsAPI } from "../api/tags";
 import camera from "../images/camera-icon.png";
+import "../static/addsnack.css";
 
 function AddSnack() {
   const [snacks, setSnacks] = useState([]);

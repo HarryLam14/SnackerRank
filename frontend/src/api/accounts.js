@@ -37,11 +37,11 @@ const logout = async () => {
     .catch((err) => console.log(err));
 };
 
-const register = async (username, password) => {
+const register = async (username, email, password) => {
   const request = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ username, email, password }),
   };
 
   return fetch("/api/auth/register", request)

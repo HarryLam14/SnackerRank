@@ -10,7 +10,7 @@ function SnacksByTag() {
   const targetTagID = useParams();
 
   useEffect(() => {
-    snacksAPI.getSnacks(targetTagID['tags'], null).then((data) => {
+    snacksAPI.getSnacks(targetTagID["tags"], null).then((data) => {
       setSnacks(data);
     });
   }, [targetTagID]);

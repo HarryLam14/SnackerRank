@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { snacksAPI } from "../api/snacks";
 import { tagsAPI } from "../api/tags";
-import  camera  from "../images/camera-icon.png";
+import camera from "../images/camera-icon.png";
 
 function AddSnack() {
   const [snacks, setSnacks] = useState([]);
@@ -59,7 +59,7 @@ function AddSnack() {
   };
 
   return (
-    <div className = "container">
+    <div className="container">
       <h3>Snack name</h3>
       <form onSubmit={handleSubmit}>
         <input
@@ -76,7 +76,8 @@ function AddSnack() {
           onChange={handleImageChange}
           name="image"
           type="file"
-        /> <img src={camera} className="camera-icon" alt = ""/>
+        />{" "}
+        <img src={camera} className="camera-icon" alt="" />
         <h3>Snack description</h3>
         <input
           type="text"

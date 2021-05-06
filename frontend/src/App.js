@@ -86,7 +86,7 @@ function App() {
           </Route>
 
           <Route path="/snack/:id">
-            <SnackDetail />
+            <SnackDetail loggedIn={loggedIn} />
           </Route>
 
           <Route path="/add-snack">

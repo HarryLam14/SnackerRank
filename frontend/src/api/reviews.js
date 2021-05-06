@@ -32,7 +32,12 @@ const addReview = async (review) => {
   };
 
   return fetch(`/api/review/`, request)
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.status===409) {
+        return res;
+      }
+      res.json()
+    })
     .catch((err) => console.log(err));
 };
 

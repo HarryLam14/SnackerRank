@@ -25,7 +25,7 @@ function SnackDetail({ loggedIn }) {
     );
   }, [snack_id]);
 
-  const toggleForm = (e) => {
+  const toggleForm = () => {
     setShowForm(!showForm);
   };
 
@@ -33,7 +33,12 @@ function SnackDetail({ loggedIn }) {
     reviewsAPI
       .addReview(review)
       .then((data) => {
+        if (data.status===409) {
+          alert("User can't add more than one review");
+          return;
+        }
         setReviews([...reviews, data]);
+        setShowForm(false);
       })
       .catch((error) => {
         console.log(error);

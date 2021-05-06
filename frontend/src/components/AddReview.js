@@ -29,12 +29,14 @@ function AddReview({ snack_id, newReview }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <h4>Add a comment</h4>
         <input
           type="text"
           placeholder="Comment"
           onChange={handleDescriptionChange}
           required
         />
+        <h4>Rate out of 5 stars</h4>
         <ReactStars
           count={5}
           size={15}
@@ -42,6 +44,7 @@ function AddReview({ snack_id, newReview }) {
           onChange={handleRatingChange}
           required
         />
+        <br/>
         <button type="submit">Submit</button>
       </form>
     </div>

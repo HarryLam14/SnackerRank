@@ -45,12 +45,12 @@ const Navbar = ({ loggedIn, userLogout }) => {
         <FaBars />
       </button>
       <div className="buttonsContainer">
-        <Link to="/random">
+        {/*<Link to="/random">
           <p>Random</p>
-        </Link>
+          </Link>*/}
         {!loggedIn ? (
           <>
-            <Link to="/login">
+            <Link to="/login/">
               <p>Log in</p>
             </Link>
             <Link to="/sign-up">

@@ -18,7 +18,17 @@ form input {
     color: white;
     box-shadow: none;
     border-style: solid;
+    border-color: var(--coral);
     width: auto;
+    cursor: pointer;
+}
+
+.loginButton:hover {
+    transition: filter 0.1s ease-in-out;
+    cursor: pointer;
+    background-color: var(--yellow);
+    box-shadow: 0 4px 5px 0 var(--coral);
+    border-color:var(--yellow);
 }
 
 form {

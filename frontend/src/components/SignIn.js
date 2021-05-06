@@ -12,6 +12,7 @@ function SignIn({ onSubmit, handleUsernameChange, handlePasswordChange }) {
           name="username"
           onChange={handleUsernameChange}
           placeholder="Username"
+          required
         ></input>
         <br></br>
         <input
@@ -19,6 +20,7 @@ function SignIn({ onSubmit, handleUsernameChange, handlePasswordChange }) {
           name="password"
           onChange={handlePasswordChange}
           placeholder="Password"
+          required
         ></input>
         <br></br>
         <input className="loginButton" type="submit" value="Log in"></input>

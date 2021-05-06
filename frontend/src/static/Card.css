@@ -13,6 +13,10 @@
    padding-bottom: 1rem;
 }
 
+.card button {
+  margin-top: 1rem;
+}
+
 @media  only screen and (max-width: 800px) {
     .card {
         width: 40%;

@@ -19,9 +19,14 @@ class SnackView(viewsets.ModelViewSet):
     serializer_class = SnackSerializer
     queryset = Snack.objects.all()
 
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter,
+                       filters.OrderingFilter]
     filterset_fields = ["tags"]
     search_fields = ["name", "description", "tags__name"]
+    ordering_fields = ["name",]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 class TagView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

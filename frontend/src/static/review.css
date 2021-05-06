@@ -24,3 +24,7 @@ th {
 #reviewheader > *{
     margin-right: 5px;
 }
+
+#starContainer span{
+    padding-top: -10px;
+}

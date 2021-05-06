@@ -12,6 +12,14 @@
   font-size: large;
 }
 
+h2 {
+  font-size: xx-large;
+}
+
+h3 {
+  font-size: x-large
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',

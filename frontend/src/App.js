@@ -12,8 +12,11 @@ import AddSnack from "./components/AddSnack";
 import SignUp from "./components/SignUp.js"
 import SearchResults from "./components/SearchResults";
 import ScrollToTop from "./components/ScrollToTop";
+import LogInRouter from "./components/LogInRouter";
 import _ from "lodash";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, useParams } from "react-router-dom";
+import "./static/article.css";
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -94,11 +97,15 @@ function App() {
         <div className="pageBody">
           <Route exact path="/">
             <Article />
+            <h2 class="fade-in">Browse Snacks by Tag</h2>
             <TagsList />
           </Route>
-
           <Route path="/tag/:tags">
             <SnacksByTag />
+          </Route>
+
+          <Route path="/login/:id">
+            <LogInRouter onSubmit={onSubmit} loggedIn={loggedIn} />
           </Route>
 
           <Route exact path="/login">

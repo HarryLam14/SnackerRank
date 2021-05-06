@@ -18,6 +18,8 @@ class ReviewSerializer(serializers.ModelSerializer):
 class SnackSerializer(serializers.ModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
     reviews = ReviewSerializer(many=True, read_only=True)
+    owner = serializers.ReadOnlyField(source='owner.username')
+    avg_rating = serializers.ReadOnlyField(source='avg_rating.rating__avg')
 
     class Meta:
         model = Snack 

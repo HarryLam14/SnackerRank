@@ -1,6 +1,7 @@
 import React from "react";
 import "../static/Card.css";
 import { Link } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 /* function Card(name, description, pathname='/') {
   const [name, setName] = useState('');
@@ -29,9 +30,9 @@ class Card extends React.Component {
       image: props.image,
       description: props.description,
       pathname: props.pathname,
+      score: props.score,
     };
   }
-
   render() {
     return (
       <div className="card">
@@ -41,6 +42,14 @@ class Card extends React.Component {
           </h4>
           <img src={this.state.image} alt=""></img>
           <p className="card-body">{this.state.description}</p>
+          {this.state.score ? (<ReactStars 
+            count={5}
+            value={this.state.score}
+            edit={false}
+            size={30}
+            activeColor="#ffd700"
+            isHalf={true}
+          />):""}
           <Link to={this.state.pathname}>
             <button>
               {" "}

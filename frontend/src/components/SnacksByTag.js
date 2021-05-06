@@ -28,6 +28,7 @@ function SnacksByTag() {
               image={snack.image}
               description=""
               pathname={`/snack/${snack.id}`}
+              score={snack.avg_rating}
             />
           ))}
         </div>

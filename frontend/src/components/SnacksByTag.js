@@ -4,6 +4,7 @@ import Card from "./Card.js";
 import "../static/Card.css";
 import { withRouter } from "react-router";
 import { useParams } from "react-router-dom";
+import _ from "lodash";
 
 function SnacksByTag() {
   const [snacks, setSnacks] = useState([]);
@@ -11,7 +12,9 @@ function SnacksByTag() {
 
   useEffect(() => {
     snacksAPI.getSnacks(targetTagID["tags"], null).then((data) => {
-      setSnacks(data);
+      setSnacks(
+        _.orderBy(data, ({ avg_rating }) => avg_rating || "", ["desc"])
+      );
     });
   }, [targetTagID]);
 

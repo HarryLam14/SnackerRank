@@ -11,6 +11,9 @@ class Tag(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(_("Image"), upload_to=upload_to, default='default.jpg')
 
+    class Meta:
+            ordering = ('name',)
+    
     def __str__(self):
         return self.name
 
